@@ -1,0 +1,43 @@
+//Declare HTML element references
+let timeBtn = document.getElementById("timeButton");
+let dateBtn = document.getElementById("dateButton");
+let outputMsg = document.getElementById("outputMessage");
+let userSelection = document.getElementById("langSelect")
+
+//Declare day and month arrays
+let dayEnglish = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+let monthEnglish = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+let dayFinnish = ["Maanantai", "Tiistai", "Keskiviikko", "Torstai", "Perjantai", "Lauantai", "Sunnuntai"];
+let monthFinnish = ["Tammikuu", "Helmikuu", "Maaliskuu", "Huhtikuu", "Toutkokuu", "Kesäkuu", "Heinäkuu", "Elokuu", "Syyskuu", "Lokakuu", "Marraskuu", "Joulukuu"];
+
+//Declare event listeners
+timeBtn.addEventListener('click', displayTime);
+dateBtn.addEventListener('click', displayDate);
+
+//Declare the time function
+function displayTime(){
+  let timeAndDateNow = new Date();
+  let hours = timeAndDateNow.getHours();
+  let mins = timeAndDateNow.getMinutes();
+  let secs = timeAndDateNow.getSeconds();
+  outputMsg.textContent = "The time now is: " + hours + ":" + mins + ":" + secs;
+}
+
+//Declare the date function
+function displayDate(){
+    let timeAndDateNow = new Date();
+    let day = timeAndDateNow.getDay();
+    let date = timeAndDateNow.getDate();
+    let month = timeAndDateNow.getMonth();
+    let year = timeAndDateNow.getFullYear();
+    //If the user has selected english, output the day and month in english
+    if(userSelection.value == "english")
+    {
+      outputMsg.textContent = "Today is " + dayEnglish[day] + ", " + date + "/" + monthEnglish[month] + "/" + year;
+    }
+    //If the user has selected finnish, output the day and month in finnish
+    else if (userSelection.value == "finnish")
+    {
+      outputMsg.textContent = "Today is " + dayFinnish[day] + ", " + date + "/" + monthFinnish[month] + "/" + year;
+    }
+}
