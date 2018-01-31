@@ -3,6 +3,7 @@ let timeBtn = document.getElementById("timeButton");
 let dateBtn = document.getElementById("dateButton");
 let outputMsg = document.getElementById("outputMessage");
 let userSelection = document.getElementById("langSelect")
+let pageTitle = document.getElementById("title");
 
 //Declare day and month arrays
 let dayEnglish = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -21,11 +22,13 @@ function changeButtonText(){
   {
     timeBtn.innerText = "Näytä aika";
     dateBtn.innerText = "Näytä päivä";
+    pageTitle.innerText = "Näytä päivä tai aika"
   }
   else
   {
     timeBtn.innerText = "Show time";
     dateBtn.innerText = "Show date";
+    pageTitle.innerText = "Show Date or Time";
   }
 }
 //Declare the time function
