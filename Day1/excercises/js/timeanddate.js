@@ -13,14 +13,35 @@ let monthFinnish = ["Tammikuu", "Helmikuu", "Maaliskuu", "Huhtikuu", "Toutkokuu"
 //Declare event listeners
 timeBtn.addEventListener('click', displayTime);
 dateBtn.addEventListener('click', displayDate);
+userSelection.addEventListener('change', changeButtonText);
 
+//Change the text of the button according to the user selection
+function changeButtonText(){
+  if(userSelection.value == "finnish")
+  {
+    timeBtn.innerText = "Näytä aika";
+    dateBtn.innerText = "Näytä päivä";
+  }
+  else
+  {
+    timeBtn.innerText = "Show time";
+    dateBtn.innerText = "Show date";
+  }
+}
 //Declare the time function
 function displayTime(){
   let timeAndDateNow = new Date();
   let hours = timeAndDateNow.getHours();
   let mins = timeAndDateNow.getMinutes();
   let secs = timeAndDateNow.getSeconds();
+  if(userSelection.value == "english")
+  {
   outputMsg.textContent = "The time now is: " + hours + ":" + mins + ":" + secs;
+  }
+  else
+  {
+    outputMsg.textContent = "Kello on nyt: " + hours + ":" + mins+ ":" + secs;
+  }
 }
 
 //Declare the date function
@@ -35,9 +56,9 @@ function displayDate(){
     {
       outputMsg.textContent = "Today is " + dayEnglish[day] + ", " + date + "/" + monthEnglish[month] + "/" + year;
     }
-    //If the user has selected finnish, output the day and month in finnish
-    else if (userSelection.value == "finnish")
+    //If the user has selected something else (finnish), output the day and month in finnish
+    else
     {
-      outputMsg.textContent = "Today is " + dayFinnish[day] + ", " + date + "/" + monthFinnish[month] + "/" + year;
+      outputMsg.textContent = "Tänään on " + dayFinnish[day] + ", " + date + " " + monthFinnish[month] + "ta " + year;
     }
 }
