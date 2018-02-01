@@ -22,7 +22,7 @@ function changeButtonText(){
   {
     timeBtn.innerText = "Näytä aika";
     dateBtn.innerText = "Näytä päivä";
-    pageTitle.innerText = "Näytä päivä tai aika"
+    pageTitle.innerText = "Näytä päivä tai aika";
   }
   else
   {
