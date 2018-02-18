@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Eetu's BMI Calculator</title>
+	<meta charset="UTF-8">
+  </head>
+  <body>
+    <h1>Eetu's Body Mass Index Calculator</h1>
+    Enter your height:
+    <input type="text" id="userheight"/>
+        <select type="multiple" id="heighttype">
+            <option value="metres" selected="selected">metres</option>
+            <option value="inches">inches</option>
+        </select>
+        <br /><br />
+        Enter your weight: <input type="text" id="userweight"/>
+          <select type="multiple" id="weighttype">
+              <option value="kg" selected="selected">kg</option>
+              <option value="lb">lbs</option>
+          </select>
+
+      <button type="button" id="sendbutton">Submit</button>
+      <br />
+      <h2 id="output"></h2>
+      <h3 id="comment"></h3>
+
+      <script src="js/bmiCalc.js"/></script>
+       </body>
+
+</html>
