@@ -1,30 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Eetu's BMI Calculator</title>
-	<meta charset="UTF-8">
-  </head>
-  <body>
+
+<head>
+  <title>Eetu's BMI Calculator</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/bttn.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lora|Montserrat|Roboto:100" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
     <h1>Eetu's Body Mass Index Calculator</h1>
-    Enter your height:
-    <input type="text" id="userheight"/>
-        <select type="multiple" id="heighttype">
-            <option value="metres" selected="selected">metres</option>
-            <option value="inches">inches</option>
-        </select>
-        <br /><br />
-        Enter your weight: <input type="text" id="userweight"/>
-          <select type="multiple" id="weighttype">
-              <option value="kg" selected="selected">kg</option>
-              <option value="lb">lbs</option>
-          </select>
+    <div class="row">
+      <p>Enter your height:</p>
+      <input type="text" id="userheight" />
+      <select type="multiple" id="heighttype">
+        <option value="metres" selected="selected">metres</option>
+        <option value="inches">inches</option>
+      </select>
+    </div>
 
-      <button type="button" id="sendbutton">Submit</button>
-      <br />
-      <h2 id="output"></h2>
-      <h3 id="comment"></h3>
+    <br /><br />
+    <div class="row">
 
-      <script src="js/bmiCalc.js"/></script>
-       </body>
+
+    <p>Enter your weight:</p>
+    <input type="text" id="userweight" />
+    <select type="multiple" id="weighttype">
+      <option value="kg" selected="selected">kg</option>
+      <option value="lbs">lbs</option>
+    </select>
+    </div>
+    <br />
+    <button class="bttn-unite bttn-md bttn-primary" id="sendbutton">Submit</button>
+    <br />
+    <h2 id="output"></h2>
+    <h3 id="comment"></h3>
+  </div>
+
+  <script src="js/bmiCalc.js" /></script>
+</body>
 
 </html>
