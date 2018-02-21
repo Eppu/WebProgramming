@@ -16,10 +16,6 @@ function calculateBMI() {
   let height = document.getElementById("userheight").value;
   let weight = document.getElementById("userweight").value;
 
-  //Use these for debugging
-  //console.log(height);
-  //console.log(weight);
-
   //Check that the height and weight are positive numbers
   if ((height > 0) && (weight > 0)) {
     //If units are not in metric, convert them to metric values
@@ -31,7 +27,12 @@ function calculateBMI() {
     }
     //Calculate the BMI
     let userBMI = (weight / (height * height));
-    outputMsg.textContent = "Your current BMI is " + Math.round(userBMI, 1) + ".";
+    //Round the BMI to the accuracy of one decimal
+    userBMI = Math.round( userBMI * 10 ) / 10;
+    //Output the BMI
+    outputMsg.textContent = "Your current BMI is " + userBMI + ".";
+    //Use this for testing
+    //console.log("BMI: " + userBMI + ", Height: " + height + ", Weight: " + weight);
 
     if (userBMI < 18.5) {
       outputComment.textContent = "You are underweight. Eat more!";
@@ -39,7 +40,7 @@ function calculateBMI() {
       outputComment.textContent = "You are normal weight. Keep it up!";
     } else if (userBMI >= 25 && userBMI <= 29.9) {
       outputComment.textContent = "You are overweight. Watch your portions and get some excercise!";
-    } else if (userBMI > 30) {
+    } else if (userBMI >= 30) {
       outputComment.textContent = "You are obese. Please get in touch with a doctor!";
     }
   } else {
