@@ -34,6 +34,5 @@ function addNames(){
 function clearArray(){
   names.length = 0;
   namesAdded = 0;
-  nameOutput = "";
   outputElement.textContent = "Array cleared.";
 }

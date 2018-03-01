@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Study Point Calculator</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Muli|Roboto" rel="stylesheet">
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Study Point and Grade Calculator</h1>
+    <p>A handy tool for calculating up to 5 student marks!</p>
+  </div>
+  <div class="content">
+    <div class="textElements">
+      <p>Student name: </p>
+      <input type="text" id="studentName" placeholder="Enter student name" />
+      <br />
+      <p>Assignment 1 mark (0-100%): </p>
+      <input type="text" id="firstMark" placeholder="Type Mark 1 Here" />
+      <br />
+      <p>Assignment 2 mark (0-100%): </p>
+      <input type="text" id="secondMark" placeholder="Type Mark 2 Here" />
+      <br /><br />
+    </div>
+    <button type="button" id="addStudentButton" class="btn">Add student</button>
+    <button type="button" id="showAllStudentsButton" class="btn">Show All Students</button>
+    <button type="button" id="clearArrayButton" class="btn">Clear Student List</button>
+    <br />
+    <p id="pointsOutput"></p>
+  </div>
+
+</body>
+<script src="js/arrays2b.js"></script>
+
+</html>
