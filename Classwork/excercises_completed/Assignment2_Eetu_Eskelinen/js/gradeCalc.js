@@ -1,3 +1,4 @@
+//Sorry for the messy code - I didn't allocate my time wisely enough with all my ski holiday hurries. The program should run ok, though!
 //Declare HTML element references and variables
 let student = document.getElementById("studentName");
 let markOne = document.getElementById("firstMark");
@@ -45,10 +46,10 @@ function calculateGrade() {
       studyPoints = "5";
       grade = "5";
     }
-    //check if both marks are valid. if not, tell the user which one isn't.
-    if (mark1 < 0 || mark1 > 100) {
+    //Check if both marks are valid. if not, tell the user which one isn't.
+    if (mark1 < 0 || mark1 > 100 || !mark1) {
       output.textContent = "Mark 1 is invalid. Make sure the number is between 0 and 100.";
-    } else if (mark2 < 0 || mark2 > 100) {
+    } else if (mark2 < 0 || mark2 > 100 || !mark2) {
       output.textContent = "Mark 2 is invalid. Make sure the number is between 0 and 100.";
     } else {
       students++;
@@ -65,11 +66,17 @@ function calculateGrade() {
 }
 //Show a list of the students stored in the allStudents array.
 function showStudentList() {
+  //This is used to clear the msg before we display the array
   msg = "";
-  for (let i = 0; i < students; i++) {
-    msg += allStudents[i] + "<br>";
+  //Check if there are any students in the array. if not, display an error message. If there are students in the array, run the loop.
+  if (allStudents.length) {
+    for (let i = 0; i < students; i++) {
+      msg += allStudents[i] + "<br>";
+    }
+    output.innerHTML = msg;
+  } else {
+    output.innerHTML = "The array is empty.";
   }
-  output.innerHTML = msg;
 }
 //Set the allStudents array's length to 0, and reset the student counter. Output a message telling what's been done.
 function clearArray() {
