@@ -5,7 +5,7 @@ zoneElem.addEventListener('mousemove',handleMouseMove);
 //window.addEventListener('mousemove',handleMouseMove);
 
 function handleMouseMove(e){
-	display_status("x,y: "+ e.offsetX  + ", " + e.offsetY); 
+	display_status("x,y: "+ e.offsetX  + ", " + e.offsetY);
 }
 
 function showButton(e){

@@ -7,12 +7,12 @@ displayStatus('waiting for an event');
 function showKeyDown(e){
 	//displayStatus("number of arguments = " + arguments.length);
 	//displayStatus('key code '+e.keyCode+' DOWN in ' + e.target);
-	displayStatus('key value '+ e.key +' DOWN in ' + e.target);
+	displayStatus('key value '+ e.key +' DOWN in ' + e.target.id);
 }
 
 function showKeyUp(e){
 	//displayStatus("key UP");
-	displayStatus('key code '+e.keyCode+' UP in ' + e.target);
+	displayStatus('key code '+e.keyCode+' UP in ' + e.target.id);
 }
 
 function displayStatus(messagetoshow)
