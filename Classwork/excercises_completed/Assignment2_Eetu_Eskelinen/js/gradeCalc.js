@@ -1,4 +1,5 @@
-//Sorry for the messy code - I didn't allocate my time wisely enough with all my ski holiday hurries. The program should run ok, though!
+//Sorry, didn't have much time to work on this during the ski break. The code is pretty messy, but it works.
+
 //Declare HTML element references and variables
 let student = document.getElementById("studentName");
 let markOne = document.getElementById("firstMark");
@@ -23,7 +24,7 @@ clearBtn.addEventListener("click", clearArray);
 
 //Calculate the grade.
 function calculateGrade() {
-  if (students < 5) {
+  if (students < maxStudents) {
     let mark1 = markOne.value;
     let mark2 = markTwo.value;
     avgMark = (parseFloat(mark1) + parseFloat(mark2)) / 2;
