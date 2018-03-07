@@ -1,0 +1,62 @@
+body {
+  background: linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px, linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px, linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px, linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px, linear-gradient(90deg, #1b1b1b 10px, transparent 10px), linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+  background-color: #131313;
+  background-size: 20px 20px;
+  text-align: center;
+  color: white;
+}
+
+h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+  font-size: 20px;
+  letter-spacing: 0.1em;
+}
+
+h2 {
+  font-family: 'Hind Madurai', sans-serif;
+  font-size: 18px;
+}
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  font-size: 26px;
+}
+
+.panel {
+  display: inline-block;
+  width: 30%;
+  border: 3px solid rgb(54, 34, 30);
+  background-image: url("../images/woodTexture.png");
+  border-radius: 25px;
+  margin: 50px;
+  margin-top: 20px;
+  text-align: center;
+  padding-bottom: 10px;
+  -webkit-box-shadow: 10px 10px 42px -16px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 42px -16px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 42px -16px rgba(0, 0, 0, 0.75);
+}
+
+.container {
+  display: inline-block;
+  margin-top: 10%;
+  background-image: url("../images/tableTexture.jpg");
+  width: 40%;
+  border-radius: 10px;
+  border: 3px solid rgba(5, 27, 3, 0.54);
+  -webkit-box-shadow: 10px 10px 42px -16px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 42px -16px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 42px -16px rgba(0, 0, 0, 0.75);
+}
+
+img {
+  padding: 20px;
+  width: 50px;
+  height: 50px;
+}
+
+p {
+  font-family: 'Hind Madurai', sans-serif;
+}

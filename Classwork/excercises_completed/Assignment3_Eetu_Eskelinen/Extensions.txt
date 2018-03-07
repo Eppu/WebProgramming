@@ -1,0 +1,4 @@
+I added the ability to start the game again, as well as a counter that keeps track of how many rounds each player has won.
+
+CSS-wise, I added a custom CSS background, some new fonts, shadows, an additional background image, and realigned the elements a bit.
+The custom CSS background is from Lea Verou's gallery. Didn't go too crazy with this task CSS-wise.
