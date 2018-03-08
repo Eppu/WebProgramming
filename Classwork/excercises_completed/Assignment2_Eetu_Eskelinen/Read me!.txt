@@ -1,0 +1,8 @@
+Hi Howell!
+
+I originally returned this task on the 2nd of March, about 9 hours before the time limit was up.
+I noticed I had accidentally left out the test data sheet which was to be included with the task. I modified the return on the 8th of March, so that the .zip file would also include said test cases.
+
+Sorry for any confusion!
+
+- Eetu

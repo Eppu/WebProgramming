@@ -47,11 +47,13 @@ function calculateGrade() {
       studyPoints = "5";
       grade = "5";
     }
-    //Check if both marks are valid. if not, tell the user which one isn't.
+    //Check if both marks are valid. if not, tell the user which one isn't. Also check if the user has typed in a name for the student.
     if (mark1 < 0 || mark1 > 100 || !mark1) {
       output.textContent = "Mark 1 is invalid. Make sure the number is between 0 and 100.";
     } else if (mark2 < 0 || mark2 > 100 || !mark2) {
       output.textContent = "Mark 2 is invalid. Make sure the number is between 0 and 100.";
+    } else if (student.value == "") {
+      output.textContent = "Student name missing. Make sure to add a name for the student.";
     } else {
       students++;
       //Push the result into the allStudents array
