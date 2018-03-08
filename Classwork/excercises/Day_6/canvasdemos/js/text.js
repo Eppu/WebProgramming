@@ -23,11 +23,11 @@ function drawFilledText()
 {
 	// clear the canvas to the background colour
 	clearCanvasToColour(backgroundColour);
-	
+
 	// set the drawing parameters
-	ctx.fillStyle = "#CC0000";	
+	ctx.fillStyle = "#CC0000";
 	ctx.font = "36px Verdana";
-	
+
 	// draw the filled text
 	ctx.fillText(txtfld.value,200,300);
 }
@@ -36,12 +36,12 @@ function drawText()
 {
 	// clear the canvas to the background colour
 	clearCanvasToColour(backgroundColour);
-	
+
 	// set the drawing parameters
 	ctx.strokeStyle = "#CC0000";
 	ctx.lineWidth = 2;
-	ctx.font = "48px Verdana";	
-	
+	ctx.font = "48px Verdana";
+
 	// draw the text
 	ctx.strokeText(txtfld.value,300,300);
 }

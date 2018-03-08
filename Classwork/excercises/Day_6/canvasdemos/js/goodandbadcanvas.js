@@ -14,5 +14,3 @@ context.lineTo(450, 50);
 
 //draw the line
 context.stroke();
-	  
-	       

@@ -21,7 +21,7 @@ function drawFilledCircle()
 	clearCanvasToColour("#000000");
 // draw the sprite
 	ctx.fillStyle = "#CC0000";
-	
+
 	ctx.beginPath();
 	ctx.arc(200,300,40,0,2 * Math.PI);
 	ctx.fill();
@@ -34,8 +34,8 @@ function drawCircle()
 // draw the sprite
 	ctx.strokeStyle = "#CC0000";
 	ctx.lineWidth = 5;
-	
+
 	ctx.beginPath();
-	ctx.arc(300,300,40,0,Math.PI/2);
+	ctx.arc(300,300,40,0,2*Math.PI);
 	ctx.stroke();
 }
