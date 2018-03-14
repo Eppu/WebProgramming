@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+body {
+  background-color: rgb(235, 248, 255);
+  font-family: "Roboto", sans-serif;
+}
+
+#content {
+  margin-top: 100px;
+}
+
+.panel {
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 450px;
+  width: auto;
+  margin: auto;
+  padding: 20px;
+  padding-bottom: 30px;
+}
+
+.panel p {
+  color: grey;
+  font-size: 16px;
+}
+
+#studentimage {
+  float: left;
+  border-radius: 150px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin-top: 50px;
+  margin-left: 10px;
+}
+
+#textcontent1 {
+  display: inline-block;
+  margin-left: 50px;
+  line-height: 0.6;
+}
+
+#studentgroup {
+  font-size: 12px;
+}
+
+input {
+  width: 60px;
+}
+
+#newstudentname, #newstudentgroup {
+  width: auto;
+}
+
+#buttons {
+  text-align: center;
+  margin: 20px;
+}
+
+#newstudentpanel {
+  text-align: center;
+  border-top: 1px solid;
+  border-color: rgb(244, 249, 248);
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title> demo of classes and objects</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+</head>
+
+<body>
+	<div id="content">
+		<div class="panel" id="studentpanel">
+			<div>
+				<img id="studentimage" src="" alt="image of student" />
+				
+				<div id="textcontent1">
+					<h2 id="studentname"> Student Name </h2>
+					<p id="studentgroup">group</p>
+					<br />
+					<p id="markone">mark 1</p>
+					<p id="marktwo">mark 2</p>
+					<p id="averagemarks">average marks</p>
+					<p id="studypoints">study points</p>
+					<p id="studentgrade">grade</p>
+				</div>
+			</div>
+			<div id="buttons">
+				<button id="previousbutton"><</button>
+				<input id="mark1input" value="Mark 1" />
+				<input id="mark2input" value="Mark 2" />
+				<button id="nextbutton">></button>
+				<button id="updatebutton">Update Marks</button>
+				<button id="newstudentbutton">New Student</button>
+			</div>
+		</div>
+
+		<div class="panel" id="newstudentpanel" style="visibility: hidden">
+			<h2>Add a new student</h2>
+			<input id="newstudentname" value="Name" />
+			<input id="newstudentgroup" value="Group" />
+			<button id="addstudentbutton">Add new student</button>
+		</div>
+	</div>
+
+	<script src="js/studentbrowser.js"></script>
+</body>
+
+</html>
