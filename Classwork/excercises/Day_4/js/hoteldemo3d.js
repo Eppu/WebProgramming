@@ -20,7 +20,7 @@ nextElem.addEventListener('click',getNextHotel);
 class Hotel {
 	constructor(name,imagefile,address,rating,rooms){
 		this.name = name;
-		this.imagefile = imagefile;  
+		this.imagefile = imagefile;
 		this.address = address;
 		this.rating = rating;
 		this._rooms = rooms;
@@ -51,7 +51,7 @@ class Hotel {
 	get numberAvailableRooms(){
 		return(this._rooms - this._bookings);
 	}
-	
+
 }  // end of Hotel class definition
 
 //declare array of hotels
@@ -90,7 +90,7 @@ showThisHotel(allHotels[currentHotel]);
 	//show booking status
 	statusElem.textContent = "Rooms Available: " + hotelObj.numberAvailableRooms;
  }
- 
+
 function makeBookingCurrentHotel(){
 	allHotels[currentHotel].makeBooking();
 	showThisHotel(allHotels[currentHotel]);
@@ -114,5 +114,4 @@ function getPreviousHotel(){
 		showThisHotel(allHotels[currentHotel]);
 	}
 }
- 
- 
+
