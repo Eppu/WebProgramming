@@ -67,6 +67,9 @@ class Line{
 		this.yEnd = yEnd;
 	}
 }
+//maps objects
+let mapElem = document.getElementById("mapholder");
+
 //get references to button objects
 let showButtonElem = document.getElementById("showroute");
 let clearButtonElem = document.getElementById("clearroute");
@@ -83,7 +86,7 @@ let end = document.getElementById("endplace");
 let canvas = document.getElementById("cv");
 
 //declare variables
-let ctx = canvas.getContext("2d");
+//let ctx = canvas.getContext("2d");
 let map = new Image();
 let marker = new Image();
 //set Image object src property to image filename
@@ -107,18 +110,18 @@ tamperePlaces[5] = new Place("yliopisto","Tampere University",626,467);
 
 let kajaaniPlaces = new Array();
 
-kajaaniPlaces[0] = new Place("linnanrauniot","Kajaani Castle Ruins",1732,97);
-kajaaniPlaces[1] = new Place("kauppakatu", "Kauppakatu", 1690, 483);
-kajaaniPlaces[2] = new Place("keskussairaala", "Kainuu Central Hospital",1538,1641);
-kajaaniPlaces[3] = new Place("kaupunginlampi", "Kajaani City Pond", 758, 184);
-kajaaniPlaces[4] = new Place("ammattikorkeakoulu", "Kajaani UAS", 707, 1534);
-kajaaniPlaces[5] = new Place("rautatieasema", "Railway Station", 1991, 1074);
+kajaaniPlaces[0] = new Place("linnanrauniot","Kajaani Castle Ruins",64.2292511,27.7305087);
+kajaaniPlaces[1] = new Place("kauppakatu", "Kauppakatu", 64.2252801,27.7304575);
+kajaaniPlaces[2] = new Place("keskussairaala", "Kainuu Central Hospital",64.2145361,27.7266107);
+kajaaniPlaces[3] = new Place("kaupunginlampi", "Kajaani City Pond", 64.2278237,27.7030033);
+kajaaniPlaces[4] = new Place("ammattikorkeakoulu", "Kajaani UAS", 64.2150652,27.7083639);
+kajaaniPlaces[5] = new Place("rautatieasema", "Railway Station", 64.2200876,27.7367553);
 
 //create circle objects
-let startCircle = new Circle(ctx,0,0,CIRCLERADIUS,false,CIRCLETHICKNESS,"#CC0000");
-let endCircle = new Circle(ctx,0,0,CIRCLERADIUS,false,CIRCLETHICKNESS,"#0000CC");
+//let startCircle = new Circle(ctx,0,0,CIRCLERADIUS,false,CIRCLETHICKNESS,"#CC0000");
+//let endCircle = new Circle(ctx,0,0,CIRCLERADIUS,false,CIRCLETHICKNESS,"#0000CC");
 //create line object
-let routeLine = new Line(ctx,0,0,0,0,LINETHICKNESS,"#CCCC00");
+//let routeLine = new Line(ctx,0,0,0,0,LINETHICKNESS,"#CCCC00");
 
 //populate the HTML select element with place names
 loadPlaceNames(kajaaniPlaces);
@@ -143,12 +146,12 @@ function loadPlaceNames(places){
 }
 
 function mapImageLoaded(){
-	ctx.drawImage(map,0,0,canvas.width, canvas.height);
+	//ctx.drawImage(map,0,0,canvas.width, canvas.height);
 }
 
 function showRoute(places){
 	//Clear the map when you draw a new route
-	ctx.drawImage(map,0,0,canvas.width, canvas.height);
+	//ctx.drawImage(map,0,0,canvas.width, canvas.height);
 
 	// ****EXERCISE 1  ******
 	// get the current value of the start and end select elements
@@ -175,12 +178,12 @@ function showRoute(places){
 
 function showAllPlaces(places){
 	for (i = 0; i < places.length; i++) {
-    ctx.drawImage(marker, (places[i].xloc * (canvas.width/map.width)) - (marker.width/2), (places[i].yloc * (canvas.height/map.height)) - (marker.height));
+    //ctx.drawImage(marker, (places[i].xloc * (canvas.width/map.width)) - (marker.width/2), (places[i].yloc * (canvas.height/map.height)) - (marker.height));
 }
 }
 
 function clearCanvasToMap(){
-	ctx.drawImage(map,0,0,canvas.width, canvas.height);
+	//ctx.drawImage(map,0,0,canvas.width, canvas.height);
 }
 
 function display_status(messagetoshow){
