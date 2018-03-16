@@ -1,10 +1,10 @@
 'use strict';
-//Anthony gave me a hand with this one!
+//Anthony gave me a hand with this one. Props to him!
 //card elements
-let crd1 = document.getElementById("card1");//d
-let crd2 = document.getElementById("card2");//h
-let crd3 = document.getElementById("card3");//s
-let crd4 = document.getElementById("card4");//c
+let crd1 = document.getElementById("card1");
+let crd2 = document.getElementById("card2");
+let crd3 = document.getElementById("card3");
+let crd4 = document.getElementById("card4");
 //dropzones
 let dropZoneHeartsElem = document.getElementById('dropzonehearts');
 let dropZoneClubsElem = document.getElementById('dropzoneclubs');
@@ -45,7 +45,7 @@ crd4.addEventListener('dragstart', function(e) {
   e.dataTransfer.setData("text/plain", e.target.id);
 	attrValue = "clubs";
 });
-
+//Check each of the suits. Display "Incorrect suit", if the card is hovered an incorrect dropzone. Display "Correct suit", if it's hovered over a correct box.
 function checkDiamonds(e){
 	if(attrValue === "diamonds"){
 		display_status("Correct suit!");
@@ -81,12 +81,13 @@ function checkSpades(e){
 }
 e.preventDefault();
 }
-
+//Allow each of the suits to be dropped onto the corresponding dropzone. If the suit of the card is different from the dropzone's, display an error message.
 function dropDiamonds(e){
 	if(attrValue === "diamonds"){
 		e.preventDefault();
 		let obj = e.dataTransfer.getData("Text");
 		e.target.appendChild(document.getElementById(obj));
+    display_status("Item correctly placed! Good job!");
 	} else {
 		e.preventDefault();
 		display_status("Sorry, wrong item!");
@@ -98,6 +99,7 @@ function dropHearts(e){
 		e.preventDefault();
 		let obj = e.dataTransfer.getData("Text");
 		e.target.appendChild(document.getElementById(obj));
+    display_status("Item correctly placed! Good job!");
 	} else {
 		e.preventDefault();
 		display_status("Sorry, wrong item!");
@@ -108,6 +110,7 @@ function dropClubs(e){
 		e.preventDefault();
 		let obj = e.dataTransfer.getData("Text");
 		e.target.appendChild(document.getElementById(obj));
+    display_status("Item correctly placed! Good job!");
 	} else {
 		e.preventDefault();
 		display_status("Sorry, wrong item!");
@@ -118,14 +121,9 @@ function dropSpades(e){
 		e.preventDefault();
 		let obj = e.dataTransfer.getData("Text");
 		e.target.appendChild(document.getElementById(obj));
+    display_status("Item correctly placed! Good job!");
 	} else {
 		e.preventDefault();
 		display_status("Sorry, wrong item!");
 	}
-}
-
-
-function allowDrop(e) {
-
-  //display_status("id of element entered: " + e.target.id);
 }
