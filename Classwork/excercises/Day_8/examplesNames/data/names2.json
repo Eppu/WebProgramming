@@ -1,16 +1,21 @@
 [{
-	"name": "Bob", 
-	"age": 31	
+	"name": "Bob",
+	"age": 31
 },
 {
-	"name": "Brian", 
-	"age": 35	
+	"name": "Brian",
+	"age": 35
 },
 {
-	"name": "Harry", 
-	"age": 27	
+	"name": "Harry",
+	"age": 27
 },
 {
-	"name": "Bill", 
-	"age": 35	
-}]
+	"name": "Bill",
+	"age": 35
+},
+{
+	"name": "👽 aæœø 👽",
+	"age": 20
+}
+]

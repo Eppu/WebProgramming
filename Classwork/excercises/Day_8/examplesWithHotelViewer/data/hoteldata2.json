@@ -1,0 +1,54 @@
+{
+ "title":"Hotels in Tampere",
+ "hotels":
+	[
+		{
+			"name":"Omena Hotel Tampere",
+			"picture":"omenahotel.jpg",
+			"address":"Hämeenkatu 7",
+			"postcode":"33100",
+			"city":"Tampere",
+			"starRating":"3",
+			"description":"Situated just 200 metres from Tampere Train Station, this hotel is across the street from Stockmann Department Store. It features rooms with a flat-screen TV, microwave and fridge."
+		},
+		{
+			"name":"Mango Hotel",
+			"picture":"mangohotel.jpg",
+			"address":"Hatanpään Puistokuja 36",
+			"postcode":"33900",
+			"city":"Tampere",
+			"starRating":"3",
+			"description":"This good-value hotel is 5 minutes’ drive from Tampere Train Station and Tampere Hall. It offers free parking, free in-room wired internet, a laundry room and a guest kitchen with free tea/coffee."
+		},
+		{
+			"name":"Lapland Hotel Tampere",
+			"picture":"laplandhotel.jpg",
+			"address":"Yliopistonkatu 44",
+			"postcode":"33100",
+			"city":"Tampere",
+			"starRating":"4",
+			"description":"Lapland Hotel Tampere is situated beside Tampere Hall, a 5-minute walk from the main street Hämeenkatu. All rooms feature free WiFi, heated bathroom floors and luxury bedding."
+		},
+		{
+			"name":"Original Sokos Hotel Villa Tampere",
+			"picture":"sokosvillahotel.jpg",
+			"address":"Sumeliuksenkatu 14",
+			"postcode":"33100",
+			"city":"Tampere",
+			"starRating":"4",
+			"description":"Housed in a former grain storehouse that was renovated in 2011, this Tampere hotel has a quiet yet central location, next to Tullintori Shopping Centre."
+		},
+		{ 
+			"name":"Radisson Blu Grand Hotel Tammer",
+			"picture":"grandhotel.jpg",
+			"address":"Satakunnankatu 13",
+			"postcode":"33100",
+			"city":"Tampere",
+			"starRating":"4",
+			"description":"The 1920s-style Radisson Blu Grand Hotel Tammer is situated 50 m from Koskipuisto Park. It offers free sauna access and free wired internet in all rooms. Tampere Station is 700 m away."
+		}
+	]
+}
+
+
+ 

@@ -11,14 +11,14 @@ function getJSONData(){
 			display_status('data transfer NOT complete. Status Code: ' + response.status);
 			return;
 		  }
-
+			
 		  // Examine the text in the response
 		  response.json().then(function(data) {
-			
+
 				display_status("number of items found " + data.length);
 				data.forEach(createDOMObject);
 		  });
-		 
+
 		}
 	  )
 	  .catch(function(err) {

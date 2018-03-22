@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+#container {
+  position: relative;
+  margin: 0 auto;
+  width: 60%;
+  height: 20%;
+}
+
+.hotelrecord {
+  margin: auto;
+  padding: 15px;
+  border: 1px dotted rgb(153, 197, 228);
+  clear: both;
+}
+
+.recordtext {
+  width: 80%;
+  border: 1px dotted rgb(153, 197, 228);
+  padding-left: 5px;
+  padding-bottom: 5px;
+}
+
+.recordimage {
+  display: inline-block;
+  float: right;
+  margin-top: -180px;
+}
+
+p {
+  font-weight: 300;
+}
+
+.title {
+  color: rgb(11, 164, 135);
+  font-weight: 400;
+}
+
+.pics {
+  width: 150px;
+  height: 150px;
+  padding: 20px;
+}
