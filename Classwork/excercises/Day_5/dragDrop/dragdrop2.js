@@ -35,7 +35,7 @@ function drop(e)
 	e.preventDefault();
 	let elementToDrop = e.dataTransfer.getData("Text");
 	e.target.appendChild(document.getElementById(elementToDrop));
-	
+
 }
 
 function display_status(messagetoshow)
