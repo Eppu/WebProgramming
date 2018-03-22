@@ -1,0 +1,29 @@
+html, body {
+	height: 100%;
+}
+
+#status_line{
+	font: 18px "Arial Black", "Helvetica Bold", sans-serif;
+	color:navy;  
+}
+
+#container{
+	width: 80%;
+	min-height: 400px;
+	border: 2px green solid;
+	background-color: pink;
+	margin: auto;
+}
+.newsitem{
+	width: 80%;
+	border: 3px red solid;
+	background-color: cornsilk;
+	margin:auto;
+	margin-top:10px;
+	font: bold 24px arial,sans-serif;
+	color:firebrick;
+	padding: 10px 20px;
+}
+#controlPanel{
+	padding-top: 20px;
+}

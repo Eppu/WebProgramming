@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title> Location Viewer with Google Map </title>
+	<link rel="stylesheet" href="css/gmap.css" media="screen" />
+</head>
+
+<body>	
+		<p id= "status_line">&nbsp;</p>
+		<div id= "container">
+			<div id="mapholder"></div>
+		
+			<div id="controlPanel">
+				Latitude:<input type="text" id = "latField" value="61.5064004" >	
+				Longitude:<input type="text" id = "longField" value="23.6493113" >
+
+				Zoom:<input type="text" id = "zoomField" value="16" >
+				<button id="showMapButton">Show Map</button>
+				<button id="showMeButton">Show My Position</button>
+			</div>
+		</div>
+		<script src= "https://maps.google.com/maps/api/js"></script>
+		<script src="js/gmapgeolocation.js"></script>
+</body>
+</html>
+		

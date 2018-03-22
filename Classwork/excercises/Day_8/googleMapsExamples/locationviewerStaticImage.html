@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title> Static Image Demo using Canvas </title>
+	<link rel="stylesheet" href="css/map.css" media="screen" />
+</head>
+
+<body>	
+		<p id= "status_line">&nbsp;</p>
+		<div id= "container">
+			<canvas id = "cv" width = "640" height="480"></canvas>
+		
+			<div id="controlPanel">
+				Latitude:<input type="text" id = "latField" value="61.5064004" >	
+				Longitude:<input type="text" id = "longField" value="23.6493113" >
+
+				Zoom:<input type="text" id = "zoomField" value="16" >
+				<button id="showMapButton">Show Map</button>
+			</div>
+		</div>
+		<script src="js/canvasStaticImage.js"></script>
+</body>
+</html>
+		

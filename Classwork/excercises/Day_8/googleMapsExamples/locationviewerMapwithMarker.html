@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title> Location Viewer with Google Map </title>
+	<link rel="stylesheet" href="css/gmap.css" media="screen" />
+</head>
+
+<body>	
+		<p id= "status_line">&nbsp;</p>
+		<div id= "container">
+			<div id="mapholder"></div>
+		
+			<div id="controlPanel">
+				Latitude:<input type="text" id = "latField" value="61.5064004" >	
+				Longitude:<input type="text" id = "longField" value="23.6493113" >
+
+				Zoom:<input type="text" id = "zoomField" value="16" > <br>
+				
+				<button id="showMapButton">Show Map</button>
+				<button id="showMediaPolisButton">Show Mediapolis</button>
+				<button id="showMainCampusButton">Show Main Campus</button>
+				<button id="showRouteButton">Show Route</button>
+			</div>
+		</div>
+		<script src= "https://maps.google.com/maps/api/js"></script>
+		<script src="js/gmapMarkerRoute.js"></script>
+</body>
+</html>
+		
