@@ -92,10 +92,12 @@ function updateGameState(secs) {
     //check collide with left wall
     if (ballSprite.x < 0) {
       ballSprite.xSpeed *= -1;
+      ballSprite.x = 0;
     }
     // check collide with right wall
     if ((ballSprite.x + ballSprite.width) > canvasElem.width) {
       ballSprite.xSpeed *= -1;
+      ballSprite.x = canvasElem.width-ballSprite.width;
     }
 
     // check collide with top
@@ -103,11 +105,13 @@ function updateGameState(secs) {
       ballSprite.ySpeed *= -1;
     }
     // check collide with paddle. incrase the ball's ySpeed up to a certain point if the player has hit the ball 3 times in a row.
+    //ADD THE CHECK FOR THE BOTTOM OF THE PADDLE
     if ((ballSprite.y + paddleSprite.height > paddleSprite.y) && (ballSprite.x >= paddleSprite.x) && (ballSprite.x <= (paddleSprite.x + paddleSprite.width))) {
       timesCollided++;
       if(timesCollided < 3)
       {
         ballSprite.ySpeed *= -1;
+        ballSprite.y = paddleSprite.y-ballSprite.height;
       } else if (ballSprite.ySpeed < maxYSpeed){
         ballSprite.ySpeed *= -1.5;
         timesCollided = 0;
@@ -170,6 +174,10 @@ function renderGame() {
   // draw the paddle sprite
   ctx.fillStyle = paddleSprite.colour;
   ctx.fillRect(paddleSprite.x, paddleSprite.y, paddleSprite.width, paddleSprite.height);
+  //debug point
+  ctx.fillStyle = "red";
+  ctx.fillRect(paddleSprite.y, paddleSprite.y, 2,2);
+
 
   // draw the ball sprite
   ctx.fillStyle = ballSprite.colour;

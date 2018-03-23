@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title> Tampere Bus Tracker </title>
+	<link rel="stylesheet" href="css/gmap.css" media="screen" />
+  <style>
+    #mapholder{
+
+      height: 100vh;
+      width: 100vw;
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+		<p id= "status_line">&nbsp;</p>
+		<div id= "container">
+			<div id="mapholder"></div>
+
+			<!--div id="controlPanel">
+				Street Address<input type="text" id = "addressField" placeholder = "street address" >
+				Postcode:<input type="text" id = "postcodeField" placeholder = "postcode" >
+
+				City:<input type="text" id = "cityField" placeholder = "city" >
+				<button id="showLocationButton">Show Location</button>
+			</div-->
+		</div>
+		<script src= "https://maps.google.com/maps/api/js"></script>
+		<script src="js/busTracker.js"></script>
+</body>
+</html>
