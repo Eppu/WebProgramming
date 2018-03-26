@@ -116,7 +116,7 @@ function showRoute(places) {
     }
   });
 }
-
+console.log(kajaaniPlaces);
 function showAllPlaces(places) {
   for (i = 0; i < places.length; i++) {
     currentLocation = new google.maps.LatLng(places[i].xloc, places[i].yloc)
