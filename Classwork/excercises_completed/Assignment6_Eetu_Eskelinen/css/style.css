@@ -1,0 +1,26 @@
+body {
+  background-image: url("../images/background.jpg");
+  background-color: black;
+  font-family: "Press Start 2P", cursive;
+}
+
+p {
+  font: 18px "Arial Black", "Helvetica Bold", sans-serif;
+  color:navy;
+}
+canvas{
+  border: 1px solid red;
+  display: block;
+  margin:auto;
+}
+.container{
+  width:640px;
+  margin:auto;
+  margin-top: 100px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 56px;
+  color: red;
+}
