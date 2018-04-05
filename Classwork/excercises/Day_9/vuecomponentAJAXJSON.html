@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AJAX JSON and Vue</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+	<style>
+	
+		.container{
+			padding-top: 40px;
+			width: 80%;
+			margin:auto;
+		}
+	</style>
+  </head>
+  <body>
+     <div id= "componentholder" class="container">
+				<hotel-list v-bind:title="title" v-bind:status = "status" v-bind:results="results"></hotel-list>
+        <button v-on:click="update()">Update</button>
+		</div>
+
+		<script src =  "js/vue.js"></script>
+		<script src="js/vuecomponentAJAXJSON.js"></script>
+		
+  </body>
+</html>
