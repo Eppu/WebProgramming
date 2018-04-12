@@ -49,3 +49,9 @@ p {
   margin-left: 333px;
   margin-top: 5px;
 }
+
+#mapholder{
+  width: 60%;
+  height: 350px;
+  margin:auto;
+}

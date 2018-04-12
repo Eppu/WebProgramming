@@ -1,8 +1,20 @@
-let dataButtonElem = document.getElementById("getDataButton");
+const TAMPERE_LAT = 61.4922779;
+const TAMPERE_LON = 23.7608524;
+const INIT_ZOOM = 12;
+
 let panelElem = document.getElementById("container");
 let dataSource1 = "data/hoteldata2.json";
+let mapDivElem = document.getElementById("mapholder");
+
+let myMap;
+
+let geocoder = new google.maps.Geocoder();
+let directionsService = new google.maps.DirectionsService();
+let directionsDisplay = new google.maps.DirectionsRenderer();
 
 
+showMap();
+//fetch json data and run createDOMOBject as many times as needed
 fetch(dataSource1)
   .then(function(response) {
     return response.json();
@@ -11,23 +23,11 @@ fetch(dataSource1)
     console.log(myJson);
     for (i = 0; i < myJson.length; i++) {
       createDOMObject(myJson[i]);
+      drawPositions(myJson[i]);
     }
   });
 
-let omenaHotelObj = {
-  "name": "Omena Hotel Tampere",
-  "picture": "omenahotel.jpg",
-  "address": "Hämeenkatu 7",
-  "postcode": "33100",
-  "city": "Tampere",
-  "starRating": "3",
-  "description": "Situated just 200 metres from Tampere Train Station, this hotel is across the street from Stockmann Department Store. It features rooms with a flat-screen TV, microwave and fridge."
-};
-
-dataButtonElem.addEventListener("click", function() {
-  createDOMObject(omenaHotelObj);
-});
-
+//create dom objects
 function createDOMObject(item) {
   let newItem = document.createElement("div");
   newItem.setAttribute("class", "hotelrecord");
@@ -50,5 +50,37 @@ function createDOMObject(item) {
 
   newItem.innerHTML = content;
   panelElem.appendChild(newItem);
+}
+//show map function
+function showMap() {
+  let lat_long = new google.maps.LatLng(TAMPERE_LAT, TAMPERE_LON);
 
+  let mapOptions = {
+    center: lat_long,
+    zoom: INIT_ZOOM,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapTypeControl: false,
+    navigationControlOptions: {
+      style: google.maps.NavigationControlStyle.SMALL
+    },
+  };
+  myMap = new google.maps.Map(mapDivElem, mapOptions);
+
+  directionsDisplay.setMap(myMap);
+}
+
+function drawPositions(place) {
+  let address = place.address + ", " + place.postcode + ", " + place.city;
+  geocoder.geocode({"address": address},
+    function(results, status) {
+      if (status === google.maps.GeocoderStatus.OK) {
+        let addressLocation = results[0].geometry.location;
+        new google.maps.Marker({
+          position: addressLocation,
+          map: myMap,
+          title: place.name,
+        });
+      }
+    }
+  )
 }

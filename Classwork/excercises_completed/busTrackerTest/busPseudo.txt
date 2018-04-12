@@ -1,0 +1,17 @@
+Set up references to HTML elements
+
+set up an array with desired bus id's
+
+fetch API data
+
+set up a new Google Map
+
+create bus markers based on chosen bus id's
+  for(let i = 0; i < allBuses.length; i++){
+    if(allBuses includes chosenBusId[i] ){
+      current location = current buses location;
+      create a new google maps marker with the position as the current bus location
+    }
+  }
+
+fetch the api data and update markers once per second
