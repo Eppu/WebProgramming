@@ -20,12 +20,12 @@ getJSONData();
 showMap();
 
 class Bus {
-	constructor(line, displayName, xloc, yloc) {
-		this.line = line;
-		this.displayName = displayName;
-		this.xloc = xloc;
-		this.yloc = yloc;
-	}
+  constructor(line, displayName, xloc, yloc) {
+    this.line = line;
+    this.displayName = displayName;
+    this.xloc = xloc;
+    this.yloc = yloc;
+  }
 }
 
 /* mapDivElem.addEventListener('load', function() {
@@ -33,83 +33,91 @@ class Bus {
 }); */
 
 
-function getJSONData(){
-	fetch(busDataSource)
-	  .then(
-		function(response) {
-		  if (response.status !== 200) {
-			display_status('data transfer NOT complete. Status Code: ' + response.status);
-			return;
-		  }
-		  // Examine the text in the response
-		  response.json().then(function(data) {
-				display_status("number of items found " + data.vehicles.length);
-				//data.forEach(createDOMObject);
-			  for (let i = 0; i < data.vehicles.length; i++) {
-					//create new bus objects based on the json data
-					tampereBuses[i] = new Bus(data.vehicles[i].line, data.vehicles[i].id, data.vehicles[i].latitude, data.vehicles[i].longitude);
-					//crete new markers
-				}
-				showAllBuses(tampereBuses);
-		  });
-		}
-	  )
-	  .catch(function(err) {
-		display_status('Fetch Error :' + err);
-		console.log("Error.");
-  });
+function getJSONData() {
+  fetch(busDataSource)
+    .then(
+      function(response) {
+        if (response.status !== 200) {
+          display_status('data transfer NOT complete. Status Code: ' + response.status);
+          return;
+        }
+        // Examine the text in the response
+        response.json().then(function(data) {
+          display_status("number of items found " + data.vehicles.length);
+          //data.forEach(createDOMObject);
+          for (let i = 0; i < data.vehicles.length; i++) {
+            //create new bus objects based on the json data
+            tampereBuses[i] = new Bus(data.vehicles[i].line, data.vehicles[i].id, data.vehicles[i].latitude, data.vehicles[i].longitude);
+            //crete new markers
+          }
+          showAllBuses(tampereBuses);
+        });
+      }
+    )
+    .catch(function(err) {
+      display_status('Fetch Error :' + err);
+      console.log("Error.");
+    });
 }
 
-function showMap(){
-  let lat_long = new google.maps.LatLng(TAMPERE_LAT,TAMPERE_LON);
+function showMap() {
+  let lat_long = new google.maps.LatLng(TAMPERE_LAT, TAMPERE_LON);
 
   let mapOptions = {
-    center:lat_long,
+    center: lat_long,
     zoom: INIT_ZOOM,
-    mapTypeId:google.maps.MapTypeId.ROADMAP,
-    mapTypeControl:false,
-    navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL},
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapTypeControl: false,
+    navigationControlOptions: {
+      style: google.maps.NavigationControlStyle.SMALL
+    },
   };
-  myMap = new google.maps.Map(mapDivElem,mapOptions);
+  myMap = new google.maps.Map(mapDivElem, mapOptions);
 
-	  directionsDisplay.setMap(myMap);
+  directionsDisplay.setMap(myMap);
 
 }
 
-function showAllBuses(buses){
-	for(i = 0; i < buses.length; i++){
-	currentLocation = new google.maps.LatLng(buses[i].xloc, buses[i].yloc);
-	let thisMarker = new google.maps.Marker({
-		position: currentLocation,
-		map: myMap,
-		title: buses[i].line,
-	});
-	markers.push(thisMarker);
-}
+function showAllBuses(buses) {
+  for (i = 0; i < buses.length; i++) {
+    if (chosenBusIds.includes(buses[i].displayName)) {
+			markers[i].setPosition(new google.maps.LatLng(buses[i].xloc, buses[i].yloc));
+    } else {
+      currentLocation = new google.maps.LatLng(buses[i].xloc, buses[i].yloc);
+      let thisMarker = new google.maps.Marker({
+        position: currentLocation,
+        map: myMap,
+        title: buses[i].line,
+      });
+      markers.push(thisMarker);
+      chosenBusIds.push(buses[i].displayName);
+
+    }
+  }
 }
 
 // Sets the map on all markers in the array.
-      function setMapOnAll(map) {
-        for (var i = 0; i < markers.length; i++) {
-          markers[i].setMap(map);
-        }
-      }
+function setMapOnAll(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
 
-      // Removes the markers from the map, but keeps them in the array.
-      function clearMarkers() {
-        setMapOnAll(null);
-      }
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+  setMapOnAll(null);
+}
 
-      // Shows any markers currently in the array.
-      function showMarkers() {
-        setMapOnAll(map);
-      }
+// Shows any markers currently in the array.
+function showMarkers() {
+  setMapOnAll(map);
+}
 
-      // Deletes all markers in the array by removing references to them.
-      function deleteMarkers() {
-        clearMarkers();
-        markers = [];
-      }
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers() {
+  clearMarkers();
+  markers = [];
+}
 
 
 
