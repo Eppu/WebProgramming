@@ -86,13 +86,14 @@ function showMap() {
   directionsDisplay.setMap(myMap);
 }
 
+
 function showAllBuses(buses) {
   for (i = 0; i < buses.length; i++) {
 
     //add an if statement stating: if tampere buses includes buses with the chosen line?
 
 
-    if (chosenBusLines.includes(buses[i].id)) {
+    if (markers.includes(buses[i].id)) {
 			markers[i].setPosition(new google.maps.LatLng(buses[i].xloc, buses[i].yloc));
     } else {
       currentLocation = new google.maps.LatLng(buses[i].xloc, buses[i].yloc);
@@ -101,13 +102,13 @@ function showAllBuses(buses) {
         map: myMap,
         title: buses[i].line,
       });
-      markers.push(thisMarker);
-      chosenBusLines.push(buses[i].id);
+      let currentMarker = {id: buses[i].id, marker: thisMarker};
+      markers.push(currentMarker);
 
     }
   }
 }
-
+console.log(markers);
 // Sets the map on all markers in the array.
 function setMapOnAll(map) {
   for (var i = 0; i < markers.length; i++) {

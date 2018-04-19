@@ -21,7 +21,6 @@ line8.addEventListener("click", function() {
   chosenBusLines.push("8");
   console.log(chosenBusLines);
 });
-
 clearBtn.addEventListener("click", clearMarkers());
 
 
@@ -29,9 +28,9 @@ getJSONData();
 showMap();
 
 class Bus {
-  constructor(line, id, xloc, yloc) {
+  constructor(line, displayName, xloc, yloc) {
     this.line = line;
-    this.id = id;
+    this.displayName = displayName;
     this.xloc = xloc;
     this.yloc = yloc;
   }
@@ -43,30 +42,35 @@ class Bus {
 
 
 function getJSONData() {
-  fetch(busDataSource)
-    .then(
-      function(response) {
-        if (response.status !== 200) {
-          display_status('data transfer NOT complete. Status Code: ' + response.status);
-          return;
-        }
-        // Examine the text in the response
-        response.json().then(function(data) {
-          display_status("number of items found " + data.vehicles.length);
-          //data.forEach(createDOMObject);
-          for (let i = 0; i < data.vehicles.length; i++) {
-            //create new bus objects based on the json data
-            tampereBuses[i] = new Bus(data.vehicles[i].line, data.vehicles[i].id, data.vehicles[i].latitude, data.vehicles[i].longitude);
-            //crete new markers
-          }
-          showAllBuses(tampereBuses);
-        });
-      }
-    )
-    .catch(function(err) {
-      display_status('Fetch Error :' + err);
-      console.log("Error.");
+  fetch()
+        .then(function(response) {
+            if (response.status !== 200) {
+                // data transfer not complete
+                return;
+            }
+            response.json().then(function(data) {
+                    //handle each item in the data, call a function using that data
+                    data.vehicles.forEach(busInfoOrganizer);
+                });
+            })
+        .catch(function(err) {
+            console.log('Fetch Error :' + err);
     });
+}
+
+//create an array for each selected bus line
+function busInfoOrganizer(thisBus) {
+  console.log("Bus = " + thisBus.line);
+  if (thisBus.line == busOption1.value) {
+    let currentBusLocation = new google.maps.LatLng(thisBus.latitude, thisBus.longitude);
+
+    let myMarker = new google.maps.Marker({
+      position: currentBusLocation,
+      map: myMap,
+      title: thisBus.line + " to " + thisBus.destination,
+    });
+    markers.push(myMarker);
+  }
 }
 
 function showMap() {
@@ -89,11 +93,10 @@ function showMap() {
 function showAllBuses(buses) {
   for (i = 0; i < buses.length; i++) {
 
-    //add an if statement stating: if tampere buses includes buses with the chosen line?
+    //if tampere buses includes buses with the chosen line?
 
-
-    if (chosenBusLines.includes(buses[i].id)) {
-			markers[i].setPosition(new google.maps.LatLng(buses[i].xloc, buses[i].yloc));
+    if (tampereBuses.includes(buses[i].displayName)) {
+      markers[i].setPosition(new google.maps.LatLng(buses[i].xloc, buses[i].yloc));
     } else {
       currentLocation = new google.maps.LatLng(buses[i].xloc, buses[i].yloc);
       let thisMarker = new google.maps.Marker({
@@ -102,7 +105,6 @@ function showAllBuses(buses) {
         title: buses[i].line,
       });
       markers.push(thisMarker);
-      chosenBusLines.push(buses[i].id);
 
     }
   }
@@ -117,9 +119,9 @@ function setMapOnAll(map) {
 
 // Removes the markers from the map, but keeps them in the array.
 function clearMarkers() {
-  for (i = 0; i < markers.length; i++){
-  markers[i].setMap(null);
-  markers.length = 0;
+  for (i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
+    markers.length = 0;
   }
 }
 
@@ -141,7 +143,7 @@ function deleteMarkers() {
 		new google.maps.Marker({
 			position: currentLocation,
 			map: myMap,
-			title: tampereBuses[i].id,
+			title: tampereBuses[i].displayName,
 		});
 	}
 } */

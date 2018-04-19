@@ -1,6 +1,11 @@
+//arrayName.filter(function(arrayName)){return arrayName.Name === "Something"});
+
+
+//initial settings for the map
 const TAMPERE_LAT = 61.4922779;
 const TAMPERE_LON = 23.7608524;
 const INIT_ZOOM = 13.21;
+//update frequency in milliseconds
 const UPDATE_FREQ = 1000;
 
 let mapDivElem = document.getElementById("mapholder");
@@ -16,6 +21,7 @@ let directionsDisplay = new google.maps.DirectionsRenderer();
 let tampereBuses = new Array();
 let markers = new Array();
 let chosenBusLines = new Array();
+let deployedBusLines = new Array();
 
 line8.addEventListener("click", function() {
   chosenBusLines.push("8");
@@ -34,6 +40,15 @@ class Bus {
     this.id = id;
     this.xloc = xloc;
     this.yloc = yloc;
+  }
+}
+
+
+//you could store the markers as seperate objects using this classs
+class BusMarker {
+  constructor(mapMarker, busId){
+    this.mapMarker = mapMarker;
+    this.busId = busId;
   }
 }
 
@@ -68,10 +83,9 @@ function getJSONData() {
       console.log("Error.");
     });
 }
-
+//create a new google map
 function showMap() {
   let lat_long = new google.maps.LatLng(TAMPERE_LAT, TAMPERE_LON);
-
   let mapOptions = {
     center: lat_long,
     zoom: INIT_ZOOM,
@@ -82,17 +96,14 @@ function showMap() {
     },
   };
   myMap = new google.maps.Map(mapDivElem, mapOptions);
-
   directionsDisplay.setMap(myMap);
 }
-
+//shows all the buses
 function showAllBuses(buses) {
   for (i = 0; i < buses.length; i++) {
 
     //add an if statement stating: if tampere buses includes buses with the chosen line?
-
-
-    if (chosenBusLines.includes(buses[i].id)) {
+    if (markers.includes(buses[i].id)) {
 			markers[i].setPosition(new google.maps.LatLng(buses[i].xloc, buses[i].yloc));
     } else {
       currentLocation = new google.maps.LatLng(buses[i].xloc, buses[i].yloc);
@@ -101,13 +112,13 @@ function showAllBuses(buses) {
         map: myMap,
         title: buses[i].line,
       });
-      markers.push(thisMarker);
-      chosenBusLines.push(buses[i].id);
-
+      markers[i] = new BusMarker(thisMarker, buses[i].id);
     }
   }
 }
+console.log(markers);
 
+//These are useless at the moment!
 // Sets the map on all markers in the array.
 function setMapOnAll(map) {
   for (var i = 0; i < markers.length; i++) {
