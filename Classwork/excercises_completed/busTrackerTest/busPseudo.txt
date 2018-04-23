@@ -15,3 +15,9 @@ create bus markers based on chosen bus id's
   }
 
 fetch the api data and update markers once per second
+
+
+---
+
+
+const busesToShow = allBuses.filter(bus => (bus.line === linesofinterest))

@@ -1,6 +1,5 @@
 //arrayName.filter(function(arrayName)){return arrayName.Name === "Something"});
 
-
 //initial settings for the map
 const TAMPERE_LAT = 61.4922779;
 const TAMPERE_LON = 23.7608524;
