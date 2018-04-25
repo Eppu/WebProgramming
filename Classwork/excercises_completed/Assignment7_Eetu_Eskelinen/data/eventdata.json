@@ -1,0 +1,59 @@
+[
+	{
+		"name":"Pori Jazz",
+		"startDate":"14 July 2018",
+		"endDate":"22 July 2018",
+		"address":"Pohjoisranta 11 D",
+		"postcode":"28100",
+		"city":"Pori",
+		"homepage":"http://porijazz.fi",
+		"email":"festival@porijazz.fi",
+		"picture":"porijazz.jpg"
+	},
+	{
+		"name":"Words and Music in Kajaani",
+		"startDate":"4 July 2018",
+		"endDate":"8 July 2018",
+		"address":"Koskikatu 2",
+		"postcode":"87200",
+		"city":"Kajaani",
+		"homepage":"http://runoviikko.fi",
+		"email":"runo.viikko@kajaani.fi",
+		"picture":"runoviikko.jpg"
+	},
+	{
+		"name":"Kalottjazz & Blues",
+		"startDate":"29 June 2018",
+		"endDate":"30 June 2018",
+		"address":"Keskikatu 22",
+		"postcode":"95400",
+		"city":"Tornio",
+		"homepage":"http://kalottjazzblues.net",
+		"email":"kulttuuritoimisto@tornio.fi",
+		"picture":"kalottjazz.jpg"
+	},
+	{
+		"name":"Midnight Sun Film Festival",
+		"startDate":"13 June 2018",
+		"endDate":"17 June 2018",
+		"address":"Kansanopistontie 5",
+		"postcode":"99600",
+		"city":"Sodankylä",
+		"homepage":"http://msfilmfestival.fi",
+		"email":"office@msfilmfestival.fi",
+		"picture":"msfilmfestival.jpg"
+	},
+	{
+		"name":"Seurasaari Midsummer Bonfires",
+		"startDate":"22 June 2018",
+		"endDate":"23 June 2018",
+		"address":"Seurasaari",
+		"postcode":"00250",
+		"city":"Helsinki",
+		"homepage":"http://seurasaarenjuhannusvalkeat.fi ",
+		"email":"info@seurasaarisaatio.fi",
+		"picture":"seurasaari.jpg"
+	}
+]
+
+

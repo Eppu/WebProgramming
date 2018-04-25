@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+#container {
+  margin: 0 auto;
+  width: 1920px;
+  height: 1000px;
+}
+
+.hotelrecord {
+  display: inline-block;
+  padding: 15px;
+  border: 1px dotted rgb(153, 197, 228);
+}
+
+.recordtext {
+  display: inline-block;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  float: left;
+  vertical-align: top;
+}
+
+.event {
+  display: inline-block;
+  border: 1px dotted rgb(153, 197, 228);
+  width: 40%;
+}
+
+.recordimage {
+  display: inline-block;
+  vertical-align: top;
+  float: right;
+}
+
+p {
+  font-weight: 300;
+}
+
+.title {
+  color: rgb(11, 164, 135);
+  font-weight: 400;
+}
+
+.pics {
+  padding: 10px;
+}
+
+#getDataButton {
+  margin-left: 333px;
+  margin-top: 5px;
+}
+
+#mapholder {
+  position: relative;
+  display: inline-block;
+  width: 55%;
+  height: 100%;
+  margin-right: 20px;
+  float: left;
+}
