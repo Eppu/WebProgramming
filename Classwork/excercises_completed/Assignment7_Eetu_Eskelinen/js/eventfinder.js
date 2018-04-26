@@ -6,10 +6,10 @@ const INIT_ZOOM = 5.75;
 let panelElem = document.getElementById("container");
 let dataSource1 = "data/eventdata.json";
 let mapDivElem = document.getElementById("mapholder");
-
+//these will store the google map and the user position
 let myMap;
 let pos;
-
+//these are needed for the google map to work and show directions correctly
 let geocoder = new google.maps.Geocoder();
 let directionsService = new google.maps.DirectionsService();
 let directionsDisplay = new google.maps.DirectionsRenderer();
@@ -36,7 +36,7 @@ function createDOMObject(item) {
   newItem.setAttribute("class", "event");
 
   let content = "";
-  
+
   content += "<div class='recordtext'>";
   content += "<p>";
   content += "<span class='title'>Name: </span> " + item.name + "</br>";
@@ -59,7 +59,6 @@ function createDOMObject(item) {
 //show map function
 function showMap() {
   let lat_long = new google.maps.LatLng(INIT_LAT, INIT_LON);
-
   // set up map options
   let mapOptions = {
     center: lat_long,
@@ -73,7 +72,6 @@ function showMap() {
   myMap = new google.maps.Map(mapDivElem, mapOptions);
   //set up directions display
   directionsDisplay.setMap(myMap);
-
   //check for users geolocation
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -81,7 +79,7 @@ function showMap() {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-
+      //if location is found, display a message saying so
       infoWindow.setPosition(pos);
       infoWindow.setContent('Location found.');
       infoWindow.open(myMap);
@@ -90,18 +88,18 @@ function showMap() {
       handleLocationError(true, infoWindow, myMap.getCenter());
     });
   } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow,myMap.getCenter());
+    // browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, myMap.getCenter());
   }
 }
 // Send the user an error message if the geolocating failed, or if the browser doesn't support geolocation.
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(myMap);
-      }
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+    'Error: The Geolocation service failed.' :
+    'Error: Your browser doesn\'t support geolocation.');
+  infoWindow.open(myMap);
+}
 
 //draw markers at event locations
 function drawPositions(place) {
@@ -112,7 +110,7 @@ function drawPositions(place) {
     function(results, status) {
       if (status === google.maps.GeocoderStatus.OK) {
         let addressLocation = results[0].geometry.location;
-        //this is a var instead of a let, so that we can use it outside of this function
+        //this is a var instead of a let, so that we can use it later
         var marker = new google.maps.Marker({
           position: addressLocation,
           map: myMap,
@@ -129,19 +127,18 @@ function drawPositions(place) {
 
       //display a driving route from the users position to the clicked marker
       marker.addListener('click', function() {
-            directionsService.route({
-                origin: pos,
-                destination: address,
-                travelMode: 'DRIVING'
-            }, function(response, status) {
-                if (status === 'OK') {
-                    directionsDisplay.setDirections(response);
-                } else {
-                    window.alert('Directions request failed due to ' + status);
-                }
-            });
+        directionsService.route({
+          origin: pos,
+          destination: address,
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
         });
+      });
     }
   )
 }
-

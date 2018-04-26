@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
 body {
   font-family: "Roboto", sans-serif;
+  background-color: rgb(69, 115, 123);
 }
 
 #container {
   margin: 0 auto;
-  width: 1920px;
+  width: 1880px;
   height: 1000px;
 }
 
@@ -17,21 +18,20 @@ body {
 
 .recordtext {
   display: inline-block;
-  padding-left: 5px;
-  padding-bottom: 5px;
   float: left;
-  vertical-align: top;
+  margin-left: 15px;
 }
 
 .event {
   display: inline-block;
   border: 1px dotted rgb(153, 197, 228);
-  width: 40%;
+  background-color: rgb(244, 246, 246);
+  width: 42%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .recordimage {
   display: inline-block;
-  vertical-align: top;
   float: right;
 }
 
@@ -48,11 +48,6 @@ p {
   padding: 10px;
 }
 
-#getDataButton {
-  margin-left: 333px;
-  margin-top: 5px;
-}
-
 #mapholder {
   position: relative;
   display: inline-block;
@@ -60,4 +55,5 @@ p {
   height: 100%;
   margin-right: 20px;
   float: left;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
