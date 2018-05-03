@@ -9,7 +9,7 @@ const UPDATE_FREQ = 1000;
 
 let mapDivElem = document.getElementById("mapholder");
 let busDataSource = "http://lissu-api.herokuapp.com/";
-let option1 = document.getElementById("21");
+let line8 = document.getElementById("8");
 let clearBtn = document.getElementById("clearbutton");
 
 let myMap;
@@ -19,18 +19,17 @@ let directionsDisplay = new google.maps.DirectionsRenderer();
 
 let tampereBuses = new Array();
 let markers = new Array();
-let chosenBusLines = ["8", "21"];
+let chosenBusLines = new Array();
 let deployedBusLines = new Array();
 
-let gotInitialValues = false;
-
-option1.addEventListener("click", function() {
+line8.addEventListener("click", function() {
   //if(chosenBusLines.includes("8"))
   chosenBusLines.push("8");
   console.log(chosenBusLines);
 });
 
 clearBtn.addEventListener("click", clearMarkers());
+
 
 getJSONData();
 showMap();
@@ -67,13 +66,22 @@ function getJSONData() {
         }
         // Examine the text in the response
         response.json().then(function(data) {
-          if(!gotInitialValues){
           display_status("number of items found " + data.vehicles.length);
-          data.vehicles.forEach(storeBusData);
-          gotInitialValues = true;
-        } else {
-          data.vehicles.forEach(updateBusData);
-        }
+
+
+          data.vehicles.forEach(function(vehicle) {
+            console.log(vehicle.id);
+            if(markers.busId.includes(vehicle.id)){
+              console.log("vehicle found")
+              updateMarker(markers, vehicle, myMap);
+            } else {
+            //  console.log("vehicle not found");
+              addMarker(vehicle);
+            }
+          });
+
+
+          //showAllBuses(tampereBuses);
         });
       }
     )
@@ -98,32 +106,56 @@ function showMap() {
   directionsDisplay.setMap(myMap);
 }
 
-function storeBusData(thisBus) {
-  let currentBusLocation = new google.maps.LatLng(thisBus.latitude, thisBus.longitude);
-    if(thisBus.line.includes(option1.value)) {   //need to check if the current buses line equals to something inside the chosenBusLines array?
-      let myMarker = new google.maps.Marker({
-        position: currentBusLocation,
-        map: myMap,
-        title: thisBus.line + " to " + thisBus.destination,
-      });
-      let thisMarker = new BusMarker(myMarker, thisBus.id);
-      markers.push(thisMarker);
-    }
+
+function updateMarker(thisMarker, vehicle, map) {
+    thisMarker.setPosition(new google.maps.LatLng(vehicle.latitude, vehicle.longitude));
 }
 
-function updateBusData(thisBus) {
-  if(thisBus.line.includes(option1.value)) {
-    for(i = 0; i < markers.length; i++) {
-      if(thisBus.id == markers[i].busId){
-        markers[i].mapMarker.setPosition(new google.maps.LatLng(thisBus.latitude,thisBus.longitude));
-      }
+function addMarker(vehicle) {
+  currentLocation = new google.maps.LatLng(vehicle.latitude, vehicle.longitude);
+  let thisMarker = new google.maps.Marker ({
+    position: currentLocation,
+    map: myMap,
+    title: vehicle.line,
+  });
+  markers.push(new BusMarker(thisMarker, vehicle.id));
+}
+
+
+
+
+
+//shows all the buses
+/* function showAllBuses(buses) {
+  for (i = 0; i < buses.length; i++) {
+    //add an if statement stating: if tampere buses includes buses with the chosen line?
+    if (markers.includes(buses[i].id)) {
+			markers[i].setPosition(new google.maps.LatLng(buses[i].xloc, buses[i].yloc));
+    } else {
+      currentLocation = new google.maps.LatLng(buses[i].xloc, buses[i].yloc);
+      let thisMarker = new google.maps.Marker({
+        position: currentLocation,
+        map: myMap,
+        title: buses[i].line,
+      });
+      markers[i] = new BusMarker(thisMarker, buses[i].id);
     }
   }
-}
+} */
 
 
 
-//These don't do anything at the moment!
+
+
+
+
+
+
+
+
+
+
+//These are useless at the moment!
 // Sets the map on all markers in the array.
 function setMapOnAll(map) {
   for (var i = 0; i < markers.length; i++) {
@@ -134,9 +166,9 @@ function setMapOnAll(map) {
 // Removes the markers from the map, but keeps them in the array.
 function clearMarkers() {
   for (i = 0; i < markers.length; i++){
-  markers[i].mapMarker.setMap(null);
+  markers[i].setMap(null);
+  markers.length = 0;
   }
-    markers.length = 0;
 }
 
 // Shows any markers currently in the array.
@@ -149,6 +181,27 @@ function deleteMarkers() {
   clearMarkers();
   markers = [];
 }
+
+//why does this not work?
+/*function showAllBuses() {
+	for(i = 0; i < tampereBuses.length; i++) {
+		currentLocation = new google.maps.LatLng(tampereBuses[i].xloc, tampereBuses[i].yloc);
+		new google.maps.Marker({
+			position: currentLocation,
+			map: myMap,
+			title: tampereBuses[i].id,
+		});
+	}
+} */
+
+/* function findBuses(){
+	getJSONData();
+	let tampereBuses = new Array();
+  for (let i = 0; i < data.vehicles.length; i++) {
+		tampereBuses[i] = new Bus(data.vehicles[i].line, data.vehicles[i].id, data.vehicles[i].latitude, data.vehicles[i].longitude);
+		console.log(tampereBuses[i]);
+	}
+} */
 
 setInterval(getJSONData, UPDATE_FREQ);
 
