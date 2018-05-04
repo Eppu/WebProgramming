@@ -30,15 +30,22 @@ class BusMarker {
   }
 }
 
-//the buttons don't do anything at the moment.
 
-/* option1.addEventListener("click", function() {
-  //if(!chosenBusLines.includes("8"))
-    chosenBusLines.push("8");
+/* ------------------------------------------------
+These don't do anything at the moment.
+
+Add the corresponding value to the chosenBusLines array if the user clicks on a selection button.
+
+ option1.addEventListener("click", function() {
+  //if(!chosenBusLines.includes("35"))
+    chosenBusLines.push("35");
   console.log(chosenBusLines);
-}); */
+});
 
 //clearBtn.addEventListener("click", clearMarkers());
+-------------------------------------------------- */
+
+
 
 getJSONData();
 showMap();
@@ -104,7 +111,7 @@ function storeBusData(thisBus) {
 
 //update the positions of the markers
 function updateBusData(thisBus) {
-  if(thisBus.line.includes(option1.value)) {
+  if(thisBus.line.includes(option1.value)) { //need to check if the current buses line equals to something inside the chosenBusLines array?
     for(i = 0; i < markers.length; i++) {
       if(thisBus.id == markers[i].busId){
         markers[i].mapMarker.setPosition(new google.maps.LatLng(thisBus.latitude,thisBus.longitude));
