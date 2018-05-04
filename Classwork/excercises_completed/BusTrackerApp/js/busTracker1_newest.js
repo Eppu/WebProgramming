@@ -1,5 +1,3 @@
-//arrayName.filter(function(arrayName)){return arrayName.Name === "Something"});
-
 //initial settings for the map
 const TAMPERE_LAT = 61.4922779;
 const TAMPERE_LON = 23.7608524;
@@ -9,7 +7,7 @@ const UPDATE_FREQ = 1000;
 
 let mapDivElem = document.getElementById("mapholder");
 let busDataSource = "http://lissu-api.herokuapp.com/";
-let option1 = document.getElementById("21");
+let option1 = document.getElementById("35");
 let clearBtn = document.getElementById("clearbutton");
 
 let myMap;
@@ -19,30 +17,10 @@ let directionsDisplay = new google.maps.DirectionsRenderer();
 
 let tampereBuses = new Array();
 let markers = new Array();
-let chosenBusLines = ["8", "21"];
-let deployedBusLines = new Array();
+let chosenBusLines = ["8", "21", "35"];
+//let deployedBusLines = new Array();
 
 let gotInitialValues = false;
-
-option1.addEventListener("click", function() {
-  //if(chosenBusLines.includes("8"))
-  chosenBusLines.push("8");
-  console.log(chosenBusLines);
-});
-
-clearBtn.addEventListener("click", clearMarkers());
-
-getJSONData();
-showMap();
-
-class Bus {
-  constructor(line, id, xloc, yloc) {
-    this.line = line;
-    this.id = id;
-    this.xloc = xloc;
-    this.yloc = yloc;
-  }
-}
 
 //store the markers as seperate objects using this classs
 class BusMarker {
@@ -52,26 +30,38 @@ class BusMarker {
   }
 }
 
-/* mapDivElem.addEventListener('load', function() {
-	showAllBuses(tampereBuses)
-}); */
-console.log(markers);
+//the buttons don't do anything at the moment.
 
+/* option1.addEventListener("click", function() {
+  //if(!chosenBusLines.includes("8"))
+    chosenBusLines.push("8");
+  console.log(chosenBusLines);
+}); */
+
+//clearBtn.addEventListener("click", clearMarkers());
+
+getJSONData();
+showMap();
+
+//fetch the data from the API
 function getJSONData() {
   fetch(busDataSource)
     .then(
       function(response) {
+        //if something goes wrong, log an error message.
         if (response.status !== 200) {
           Console.log('data transfer NOT complete. Status Code: ' + response.status);
           return;
         }
-        // Examine the text in the response
         response.json().then(function(data) {
+          //if the data hasn't been fetched before, run the storeBusData function.
           if(!gotInitialValues){
           display_status("number of items found " + data.vehicles.length);
           data.vehicles.forEach(storeBusData);
           gotInitialValues = true;
+          //if the data has already been stored once, run the updateBusData function instead.
         } else {
+          display_status("number of items found " + data.vehicles.length);
           data.vehicles.forEach(updateBusData);
         }
         });
@@ -98,6 +88,7 @@ function showMap() {
   directionsDisplay.setMap(myMap);
 }
 
+//store the bus data as markers in an array
 function storeBusData(thisBus) {
   let currentBusLocation = new google.maps.LatLng(thisBus.latitude, thisBus.longitude);
     if(thisBus.line.includes(option1.value)) {   //need to check if the current buses line equals to something inside the chosenBusLines array?
@@ -111,6 +102,7 @@ function storeBusData(thisBus) {
     }
 }
 
+//update the positions of the markers
 function updateBusData(thisBus) {
   if(thisBus.line.includes(option1.value)) {
     for(i = 0; i < markers.length; i++) {
@@ -118,12 +110,21 @@ function updateBusData(thisBus) {
         markers[i].mapMarker.setPosition(new google.maps.LatLng(thisBus.latitude,thisBus.longitude));
       }
     }
-  }
+  } //Need to add a conditional here to add another marker, if something is added into the chosenBusLines array?
+}
+
+setInterval(getJSONData, UPDATE_FREQ);
+
+function display_status(messagetoshow) {
+  let st_line = document.getElementById("status_line");
+  st_line.firstChild.nodeValue = messagetoshow;
 }
 
 
 
+/*-------------------------------------------------------
 //These don't do anything at the moment!
+
 // Sets the map on all markers in the array.
 function setMapOnAll(map) {
   for (var i = 0; i < markers.length; i++) {
@@ -150,10 +151,8 @@ function deleteMarkers() {
   markers = [];
 }
 
-setInterval(getJSONData, UPDATE_FREQ);
+---------------------------------------------------------*/
 
-function display_status(messagetoshow) {
-  let st_line = document.getElementById("status_line");
-  st_line.firstChild.nodeValue = messagetoshow;
 
-}
+
+

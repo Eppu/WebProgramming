@@ -1,4 +1,4 @@
-
+//arrayName.filter(function(arrayName)){return arrayName.Name === "Something"});
 
 
 
