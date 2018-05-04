@@ -1,7 +1,7 @@
 //initial settings for the map
 const TAMPERE_LAT = 61.4922779;
 const TAMPERE_LON = 23.7608524;
-const INIT_ZOOM = 13.21;
+const INIT_ZOOM = 13;
 //update frequency in milliseconds
 const UPDATE_FREQ = 1000;
 
