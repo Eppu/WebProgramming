@@ -40,3 +40,12 @@ function busAlreadyHasMarker(busItem)
 return n
   // if no match
   return -1
+
+
+
+--
+IDEA FOR BUTTONS:
+when an user clicks a button,
+remove all markers and reload them
+if the menu is covering the screen,
+it should be unnoticable

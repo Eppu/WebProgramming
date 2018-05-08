@@ -7,7 +7,9 @@ const UPDATE_FREQ = 1000;
 
 let mapDivElem = document.getElementById("mapholder");
 let busDataSource = "http://lissu-api.herokuapp.com/";
-let option1 = document.getElementById("35");
+//let option1 = document.getElementById("35");
+//let lineButtons = document.getElementsByClassName("line-btn");
+let clearArrayBtn = document.getElementById("cleararraybutton");
 let clearBtn = document.getElementById("clearbutton");
 
 let myMap;
@@ -46,10 +48,39 @@ Add the corresponding value to the chosenBusLines array if the user clicks on a 
 //clearBtn.addEventListener("click", clearMarkers());
 -------------------------------------------------- */
 
+clearBtn.addEventListener("click", clearMarkers);
 
+clearArrayBtn.addEventListener("click", function(){
+  chosenBusLines.length = 0;
+  clearMarkers();
+});
+
+
+//Add event listeners to all elements with the "line-btn" class
+function addListeners() {
+    document.querySelectorAll(".line-btn").forEach(function(elem) {
+        elem.addEventListener("click", function() {
+          //if the array already includes the value of the current elem, remove it
+          if(chosenBusLines.includes(elem.value)){
+            chosenBusLines = chosenBusLines.filter(e => e !== elem.value);
+            clearMarkers();
+            console.log(chosenBusLines);
+            gotInitialValues = false;
+            getJSONData();
+          //otherwise push it to the array
+          } else {
+            chosenBusLines.push(elem.value);
+            console.log(chosenBusLines);
+            gotInitialValues = false;
+            getJSONData();
+          }
+        });
+    });
+}
 
 getJSONData();
 showMap();
+addListeners();
 
 //fetch the data from the API
 function getJSONData() {
@@ -140,6 +171,16 @@ function display_status(messagetoshow) {
 }
 
 
+
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+  console.log("Got click");
+  for (i = 0; i < markers.length; i++){
+  markers[i].mapMarker.setMap(null);
+  }
+    markers.length = 0;
+}
 
 /*-------------------------------------------------------
 //These don't do anything at the moment!
