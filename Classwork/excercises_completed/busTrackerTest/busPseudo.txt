@@ -18,10 +18,8 @@ fetch the api data and update markers once per second
 
 
 ---
-
-
 const busesToShow = allBuses.filter(bus => (bus.line === linesofinterest))
-
+---
 
 You already have an array of chosenBusLines. Make the user interaction with the html update this array by adding or removing items to/from it.
 
@@ -30,6 +28,7 @@ then in storeBusData(thisBus) have something like..
 //add a marker to the map
 //create a busmarker object (which usefully should include the bus line as well as the //bus id and the marker)
 //push this to the array of all markers (which you have called markers)
+
 then in updateBusData(thisBus), you could check whether you have created a marker for this bus, if you have then update its position
 
  if(busAlreadyHasMarker(thisBus) >= 0 )

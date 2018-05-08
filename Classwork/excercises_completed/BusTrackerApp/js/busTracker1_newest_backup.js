@@ -24,10 +24,9 @@ let gotInitialValues = false;
 
 //store the markers as seperate objects using this classs
 class BusMarker {
-  constructor(mapMarker, busId, busLine) {
+  constructor(mapMarker, busId){
     this.mapMarker = mapMarker;
     this.busId = busId;
-    this.busLine = busLine;
   }
 }
 
@@ -63,15 +62,15 @@ function getJSONData() {
         }
         response.json().then(function(data) {
           //if the data hasn't been fetched before, run the storeBusData function.
-          if (!gotInitialValues) {
-            display_status("number of items found " + data.vehicles.length);
-            data.vehicles.forEach(storeBusData);
-            gotInitialValues = true;
-            //if the data has already been stored once, run the updateBusData function instead.
-          } else {
-            display_status("number of items found " + data.vehicles.length);
-            data.vehicles.forEach(updateBusData);
-          }
+          if(!gotInitialValues){
+          display_status("number of items found " + data.vehicles.length);
+          data.vehicles.forEach(storeBusData);
+          gotInitialValues = true;
+          //if the data has already been stored once, run the updateBusData function instead.
+        } else {
+          display_status("number of items found " + data.vehicles.length);
+          data.vehicles.forEach(updateBusData);
+        }
         });
       }
     )
@@ -99,37 +98,26 @@ function showMap() {
 //store the bus data as markers in an array
 function storeBusData(thisBus) {
   let currentBusLocation = new google.maps.LatLng(thisBus.latitude, thisBus.longitude);
-  if (chosenBusLines.includes(thisBus.line)) { //need to check if the current buses line equals to something inside the chosenBusLines array?
-    let myMarker = new google.maps.Marker({
-      position: currentBusLocation,
-      map: myMap,
-      title: thisBus.line + " to " + thisBus.destination,
-    });
-    let thisMarker = new BusMarker(myMarker, thisBus.id, thisBus.line);
-    markers.push(thisMarker);
-  }
+    if(thisBus.line.includes(option1.value)) {   //need to check if the current buses line equals to something inside the chosenBusLines array?
+      let myMarker = new google.maps.Marker({
+        position: currentBusLocation,
+        map: myMap,
+        title: thisBus.line + " to " + thisBus.destination,
+      });
+      let thisMarker = new BusMarker(myMarker, thisBus.id);
+      markers.push(thisMarker);
+    }
 }
 
 //update the positions of the markers
 function updateBusData(thisBus) {
-  if (chosenBusLines.includes(thisBus.line)) { //need to check if the current buses line equals to something inside the chosenBusLines array?
-    for (i = 0; i < markers.length; i++) {
-      if (thisBus.id == markers[i].busId) {
-        markers[i].mapMarker.setPosition(new google.maps.LatLng(thisBus.latitude, thisBus.longitude));
+  if(thisBus.line.includes(option1.value)) { //need to check if the current buses line equals to something inside the chosenBusLines array?
+    for(i = 0; i < markers.length; i++) {
+      if(thisBus.id == markers[i].busId){
+        markers[i].mapMarker.setPosition(new google.maps.LatLng(thisBus.latitude,thisBus.longitude));
       }
     }
-  }
-}
-
-function busAlreadyHasMarker(busItem) {
-  for (i = 0; i < markers.length; i++) {
-    if (markers[i].busId == busItem.id) {
-      console.log(busItem);
-      return i;
-    } else {
-      return -1;
-    }
-  }
+  } //Need to add a conditional here to add another marker, if something is added into the chosenBusLines array?
 }
 
 setInterval(getJSONData, UPDATE_FREQ);
@@ -171,3 +159,7 @@ function deleteMarkers() {
 }
 
 ---------------------------------------------------------*/
+
+
+
+
