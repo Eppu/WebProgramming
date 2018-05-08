@@ -66,6 +66,7 @@ function addListeners() {
             getJSONData();
           //otherwise push it to the array
           } else {
+            clearMarkers();
             chosenBusLines.push(elem.value);
             console.log(chosenBusLines);
             gotInitialValues = false;
