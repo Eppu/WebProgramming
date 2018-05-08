@@ -11,6 +11,9 @@ let busDataSource = "http://lissu-api.herokuapp.com/";
 //let lineButtons = document.getElementsByClassName("line-btn");
 let clearArrayBtn = document.getElementById("cleararraybutton");
 let clearBtn = document.getElementById("clearbutton");
+let modal = document.getElementById('myModal');
+let modalBtn =  document.getElementById("myBtn");
+let modalSpan = span = document.getElementsByClassName("close")[0];
 
 let myMap;
 let geocoder = new google.maps.Geocoder();
@@ -33,27 +36,21 @@ class BusMarker {
   }
 }
 
-
-/* ------------------------------------------------
-These don't do anything at the moment.
-
-Add the corresponding value to the chosenBusLines array if the user clicks on a selection button.
-
- option1.addEventListener("click", function() {
-  //if(!chosenBusLines.includes("35"))
-    chosenBusLines.push("35");
-  console.log(chosenBusLines);
-});
-
-//clearBtn.addEventListener("click", clearMarkers());
--------------------------------------------------- */
-
+//Event listeners
 clearBtn.addEventListener("click", clearMarkers);
 
 clearArrayBtn.addEventListener("click", function(){
   chosenBusLines.length = 0;
   clearMarkers();
 });
+
+modalBtn.onclick = function() {
+    modal.style.display = "block";
+}
+
+modalSpan.onclick = function() {
+    modal.style.display = "none";
+}
 
 
 //Add event listeners to all elements with the "line-btn" class
@@ -95,19 +92,19 @@ function getJSONData() {
         response.json().then(function(data) {
           //if the data hasn't been fetched before, run the storeBusData function.
           if (!gotInitialValues) {
-            display_status("number of items found " + data.vehicles.length);
+            //display_status("number of items found " + data.vehicles.length);
             data.vehicles.forEach(storeBusData);
             gotInitialValues = true;
             //if the data has already been stored once, run the updateBusData function instead.
           } else {
-            display_status("number of items found " + data.vehicles.length);
+            //display_status("number of items found " + data.vehicles.length);
             data.vehicles.forEach(updateBusData);
           }
         });
       }
     )
     .catch(function(err) {
-      display_status('Fetch Error :' + err);
+      Console.log('Fetch Error :' + err);
       console.log("Error.");
     });
 }
@@ -165,10 +162,10 @@ function busAlreadyHasMarker(busItem) {
 
 setInterval(getJSONData, UPDATE_FREQ);
 
-function display_status(messagetoshow) {
+/* function display_status(messagetoshow) {
   let st_line = document.getElementById("status_line");
   st_line.firstChild.nodeValue = messagetoshow;
-}
+} */
 
 
 
