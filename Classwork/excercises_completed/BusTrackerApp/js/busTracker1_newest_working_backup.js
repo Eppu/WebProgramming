@@ -1,9 +1,3 @@
-//TODO:
-//  - School button logic
-//  - Add Geolocating for the user
-//  - Media queries
-//  - Fine tune animations etc
-
 //initial settings for the map
 const TAMPERE_LAT = 61.4922779;
 const TAMPERE_LON = 23.7608524;
@@ -11,30 +5,24 @@ const INIT_ZOOM = 13;
 //update frequency in milliseconds
 const UPDATE_FREQ = 1000;
 
-//data source
+let mapDivElem = document.getElementById("mapholder");
 let busDataSource = "http://lissu-api.herokuapp.com/";
-
-//html element references
+//let option1 = document.getElementById("35");
+//let lineButtons = document.getElementsByClassName("line-btn");
 let clearArrayBtn = document.getElementById("cleararraybutton");
 let clearBtn = document.getElementById("clearbutton");
 let modal = document.getElementById('myModal');
 let modalBtn =  document.getElementById("myBtn");
 let modalClBtn = document.getElementById("modalCloseBtn");
-let mapDivElem = document.getElementById("mapholder");
-let mediapolisBtn = document.getElementById("mediapolisButton");
-let tamkBtn = document.getElementById("mainCampusButton");
-let universityBtn = document.getElementById("universityButton");
 
-//google maps variables
 let myMap;
 let geocoder = new google.maps.Geocoder();
 let directionsService = new google.maps.DirectionsService();
 let directionsDisplay = new google.maps.DirectionsRenderer();
 
-//arrays to store marker information as well as the chosen bus lines
+let tampereBuses = new Array();
 let markers = new Array();
-//show these lines by default
-let chosenBusLines = ["8", "17", "5"];
+let chosenBusLines = ["3"];
 //let deployedBusLines = new Array();
 
 let gotInitialValues = false;
@@ -59,21 +47,15 @@ clearArrayBtn.addEventListener("click", function(){
   chosenBusLines.length = 0;
   clearMarkers();
 });
-//on a click of the modalBtn, show the modal menu
+
 modalBtn.onclick = function() {
     modal.style.display = "block";
 }
-//on click of the modalClBtn, hide the modal menu
+
 modalClBtn.onclick = function() {
     modal.style.display = "none";
 }
 
-mediapolisBtn.addEventListener("click", function() {
- //Add lines going to Mediapolis into the array if they're not on there already. (8 and 17). Do the same for the other schools in other listeners.
- //Also display a marker where the school is?
-        //chosenBusLines = chosenBusLines.filter(e => e !== "17");
-        console.log(chosenBusLines);
-});
 
 //Add event listeners to all elements with the "line-btn" class
 function addListeners() {
@@ -81,33 +63,23 @@ function addListeners() {
         elem.addEventListener("click", function() {
           //if the array already includes the value of the current elem, remove it
           if(chosenBusLines.includes(elem.value)){
-            removeFromSelection(elem);
+            chosenBusLines = chosenBusLines.filter(e => e !== elem.value);
+            clearMarkers();
+            console.log(chosenBusLines);
+            gotInitialValues = false;
+            checkIfSelected(elem);
+            getJSONData();
           //otherwise push it to the array
           } else {
-            addToSelection(elem);
+            clearMarkers();
+            chosenBusLines.push(elem.value);
+            console.log(chosenBusLines);
+            gotInitialValues = false;
+            checkIfSelected(elem);
+            getJSONData();
           }
         });
     });
-}
-
-//add the passed in element's value to the chosen bus lines. After that, reload to make sure no duplicate markers stay on the map.
-function addToSelection(elem){
-  clearMarkers();
-  chosenBusLines.push(elem.value);
-  console.log(chosenBusLines);
-  gotInitialValues = false;
-  checkIfSelected(elem);
-  getJSONData();
-}
-
-//filter out the passed in element's value from the chosen bus lines. After that, reload the buses to make sure no duplicate markers stay on the map.
-function removeFromSelection(elem){
-  chosenBusLines = chosenBusLines.filter(e => e !== elem.value);
-  clearMarkers();
-  console.log(chosenBusLines);
-  gotInitialValues = false;
-  checkIfSelected(elem);
-  getJSONData();
 }
 
 function checkIfSelected(thisElement){
@@ -119,21 +91,9 @@ function checkIfSelected(thisElement){
 }
 
 
-
-
 getJSONData();
-addListeners();
 showMap();
-checkInitialSelections();
-
-
-function checkInitialSelections(){
-window.onload = function() {
-      document.querySelectorAll(".line-btn").forEach(function(elem) {
-        checkIfSelected(elem);
-      });
-};
-}
+addListeners();
 
 //fetch the data from the API
 function getJSONData() {
@@ -217,7 +177,6 @@ function busAlreadyHasMarker(busItem) {
   }
 }
 
-//set the interval of calling getJSONData to the UPDATE_FREQ constant (1000ms)
 setInterval(getJSONData, UPDATE_FREQ);
 
 /* function display_status(messagetoshow) {
