@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<title> Tampere Bus Tracker </title>
@@ -7,29 +8,35 @@
 </head>
 
 <body>
-		<!--p id= "status_line">&nbsp;</p-->
+	<!--p id= "status_line">&nbsp;</p-->
 
+	<div class="menuBtnContainer">
+		<button id="myBtn">Open Modal</button>
+	</div>
+
+	<!-- Modal Div -->
+	<div id="myModal" class="modal">
+
+		<!-- Modal content -->
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<p>Choose your routes.</p>
 			<button class="line-btn" value="17">Show line 17</button>
 			<button class="line-btn" value="6">Show line 6</button>
 			<button id="clearbutton">Clear markers</button>
 			<button id="cleararraybutton">Clear array</button>
-			<button id="myBtn">Open Modal</button>
 
-			<div id="myModal" class="modal">
+		</div>
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Some text in the Modal..</p>
-  </div>
+	</div>
 
-</div>
+	<div id="mapholder">
 
-			<div id="mapholder"></div>
+	</div>
 
 
 
-			<!--div id="controlPanel">
+	<!--div id="controlPanel">
 				Street Address<input type="text" id = "addressField" placeholder = "street address" >
 				Postcode:<input type="text" id = "postcodeField" placeholder = "postcode" >
 
@@ -37,7 +44,8 @@
 				<button id="showLocationButton">Show Location</button>
 			</div-->
 
-		<script src= "https://maps.google.com/maps/api/js"></script>
-		<script type="text/javascript" src="js/busTracker1_newest.js"></script>
+	<script src="https://maps.google.com/maps/api/js"></script>
+	<script type="text/javascript" src="js/busTracker1_newest.js"></script>
 </body>
+
 </html>

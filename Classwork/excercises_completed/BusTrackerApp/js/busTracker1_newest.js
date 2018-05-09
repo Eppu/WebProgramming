@@ -116,6 +116,7 @@ function showMap() {
     zoom: INIT_ZOOM,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     mapTypeControl: false,
+    fullscreenControl: false,
     navigationControlOptions: {
       style: google.maps.NavigationControlStyle.SMALL
     },
