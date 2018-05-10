@@ -22,7 +22,7 @@
 	<div id="myModal" class="modal">
 
 		<!-- Modal content -->
-		<div class="modal-content">
+		<div id="busselection">
 			<h1 id="menuTitle">Choose your routes.</h1>
 			<div class="button-container">
 				<button class="line-btn" value="1">1</button>
@@ -107,29 +107,20 @@
 			<div class="button-container">
 				<button class="line-btn" value="137">137</button>
 			</div>
-			<div class="modal-menu-footer">
-				<button id="modalCloseBtn" class="circleButton"><img id="okImage" class="buttonIcon" src="images/check-mark.svg"/></button>
-				<button id="clearbutton" style="visibility: hidden;">Clear markers</button>
-				<button id="cleararraybutton" style="visibility: hidden;">Clear array</button>
-				<button id="mediapolisButton" class="circleButton" title="Lines to Mediapolis (Stop Mediapolis)"><img id="mediapolisImage" class="buttonIcon" src="images/mediapolis.png"/ /></button>
-				<button id="mainCampusButton" class="circleButton" title="Lines to TAMK Main Campus (Stop TAMK)"><img id="tamkImage" class="buttonIcon" src="images/tamk.png"/ /></button>
-				<button id="universityButton" class="circleButton" title="Lines to Tampere University (Stops Yliopisto A, B, C, D)"><img id="universityImage" class="buttonIcon" src="images/university.png"/ /></button>
-			</div>
-		</div>
 
+		</div>
+		<div class="modal-menu-footer">
+			<button id="modalCloseBtn" class="circleButton"><img id="okImage" class="buttonIcon" src="images/check-mark.svg"/></button>
+			<button id="clearbutton" style="visibility: hidden;">Clear markers</button>
+			<button id="cleararraybutton" style="visibility: hidden;">Clear array</button>
+			<button id="mediapolisButton" class="circleButton" title="Lines to Mediapolis (Stop Mediapolis)"><img id="mediapolisImage" class="buttonIcon" src="images/mediapolis.png"/ /></button>
+			<button id="mainCampusButton" class="circleButton" title="Lines to TAMK Main Campus (Stop TAMK)"><img id="tamkImage" class="buttonIcon" src="images/tamk.png"/ /></button>
+			<button id="universityButton" class="circleButton" title="Lines to Tampere University (Stops Yliopisto A, B, C, D)"><img id="universityImage" class="buttonIcon" src="images/university.png"/ /></button>
+		</div>
 	</div>
 
+
 	<div id="mapholder"></div>
-
-
-
-	<!--div id="controlPanel">
-				Street Address<input type="text" id = "addressField" placeholder = "street address" >
-				Postcode:<input type="text" id = "postcodeField" placeholder = "postcode" >
-
-				City:<input type="text" id = "cityField" placeholder = "city" >
-				<button id="showLocationButton">Show Location</button>
-			</div-->
 
 	<script src="https://maps.google.com/maps/api/js"></script>
 	<script type="text/javascript" src="js/busTracker1_newest.js"></script>
