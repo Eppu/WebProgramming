@@ -22,7 +22,7 @@ body {
 }
 
 #logo {
-  height: 80%;
+  height: 60%;
 }
 
 /* The Modal (background) */
@@ -81,6 +81,11 @@ body {
   left: 10px;
   bottom: 30px;
   z-index: 1;
+}
+
+#geolocationButton {
+  position: absolute;
+  bottom: 60px;
 }
 
 #menuTitle {
