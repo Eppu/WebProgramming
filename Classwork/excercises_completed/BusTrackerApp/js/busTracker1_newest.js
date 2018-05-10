@@ -33,6 +33,7 @@ let geocoder = new google.maps.Geocoder();
 let directionsService = new google.maps.DirectionsService();
 let directionsDisplay = new google.maps.DirectionsRenderer();
 let infoWindow = new google.maps.InfoWindow;
+let userLocWindow = new google.maps.InfoWindow;
 let markerIcon = "./marker1.png";
 let activeWindow;
 
@@ -293,6 +294,7 @@ function locateUser() {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
+        myMap.setCenter(pos);
         if (userPositionMarker) {
           userPositionMarker.setMap(null);
           userPositionMarker.length = 0;
@@ -300,7 +302,7 @@ function locateUser() {
         } else {
           createUserPositionMarker(pos);
         }
-        myMap.setCenter(pos);
+
       },
       function() {
         handleLocationError(true, infoWindow, myMap.getCenter());
@@ -329,10 +331,32 @@ function createUserPositionMarker(pos) {
     animation: google.maps.Animation.DROP,
     icon: userIcon,
   });
-  infoWindow.setPosition(pos);
-  infoWindow.setContent('Location found.');
-  infoWindow.open(myMap);
+  userPositionMarker.addListener('click', function() {
+    geocoder.geocode({
+      'location': pos
+    }, function(results, status) {
+      if (status === 'OK') {
+        if (results[0]) {
+
+          userLocWindow.setContent(results[0].formatted_address);
+          userLocWindow.open(myMap, userPositionMarker);
+        } else {
+          window.alert('No results found');
+        }
+      } else {
+        window.alert('Geocoder failed due to: ' + status);
+      }
+    });
+    });
+    myMap.setCenter(pos);
+    myMap.setZoom(15);
+    //infoWindow.setPosition(pos);
+    //infoWindow.setContent('Location found.');
+    //infoWindow.open(myMap);
+
 }
+
+
 
 /* function locateUser() {
   if (navigator.geolocation) {
