@@ -386,7 +386,8 @@ function showSchoolLines(lineArray) {
 
 // Removes the markers from the map and empties the array containing them.
 function clearBusData() {
-  console.log("Got click");
+  //use this for testing
+  //console.log("Got click");
   for (i = 0; i < markers.length; i++) {
     markers[i].mapMarker.setMap(null);
   }
