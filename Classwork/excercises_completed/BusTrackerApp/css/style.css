@@ -25,55 +25,32 @@ body {
   height: 60%;
 }
 
-/* The Modal (background) */
-
 .modal {
-  display: none;
   /* Hidden by default */
+  display: none;
   position: absolute;
-  /* Stay in place */
   z-index: 1000;
-  /* Sit on top */
   top: 0;
   width: 100%;
-  /* Full width */
-  /* Full height */
   min-height: 100%;
-  /*overflow: auto;
-  /* Enable scroll if needed */
   background-color: white;
-  /* Fallback color */
-  /* background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
   margin: 0;
-padding: 0;
-border: 0;
-
-font: inherit;
-vertical-align: baseline;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
 }
 
-
-
-/* Modal Content/Box */
 #busselection {
   margin: 0;
-padding: 0;
-border: 0;
-vertical-align: baseline;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
   padding: 10px 10px 140px 14px;
-}
-
-
-.close:hover, .close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
 }
 
 #mapholder {
   position: relative;
-  /* width: 100%; */
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -165,8 +142,6 @@ vertical-align: baseline;
   transform: scale(0.9);
 }
 
-/* The Close Button */
-
 #modalCloseBtn {
   position: absolute;
   left: 10px;
@@ -180,7 +155,7 @@ vertical-align: baseline;
   bottom: 30px;
 }
 
-#mainCampusButton  {
+#mainCampusButton {
   position: absolute;
   right: 70px;
   bottom: 30px;
@@ -199,7 +174,7 @@ vertical-align: baseline;
 }
 
 #mediapolisImage {
-    height: 100%;
+  height: 100%;
 }
 
 .buttonIcon {
@@ -220,6 +195,7 @@ vertical-align: baseline;
   right: 0;
   bottom: 0;
 }
+
 @media only screen and (max-width: 768px) {
   .line-btn {
     width: 54px;
@@ -252,8 +228,31 @@ vertical-align: baseline;
   #logo {
     height: 40%;
   }
+  #mediapolisButton {
+    right: 5px;
+  }
+  #mainCampusButton {
+    right: 60px;
+  }
+  #universityButton {
+    right: 115px;
+  }
+  #ttyButton {
+    right: 170px;
+  }
 }
 
-/* To add:
-- Media Queries
-*/
+@media only screen and (max-width: 340px) {
+  #mediapolisButton {
+    right: 2px;
+  }
+  #mainCampusButton {
+    right: 55px;
+  }
+  #universityButton {
+    right: 108px;
+  }
+  #ttyButton {
+    right: 161px;
+  }
+}

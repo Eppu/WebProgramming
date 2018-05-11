@@ -6,7 +6,7 @@ const INIT_ZOOM = 13;
 const UPDATE_FREQ = 1000;
 
 //data source
-let busDataSource = "http://lissu-api.herokuapp.com/";
+let busDataSource = "https://lissu-api.herokuapp.com/";
 
 //static data - use this if the live API is down
 //let busDataSource = "./testdata.json";
@@ -40,7 +40,7 @@ let stationaryIconPath = "M35,155a120,120 0 1,0 240,0a120,120 0 1,0 -240,0";
 let markers = new Array();
 //show these lines by default
 let chosenBusLines = ["8", "17", "5"];
-//let deployedBusLines = new Array();
+// variable to store the user position marker
 let userPositionMarker;
 
 let mediapolisLines = ["8", "17"];
@@ -400,5 +400,6 @@ function clearBusData() {
   markers.length = 0;
 }
 // END FUNCTIONS ---------------------------------------------------------------
+
 // set the interval of calling getJSONData to the UPDATE_FREQ constant (1000ms)
 setInterval(getJSONData, UPDATE_FREQ);
