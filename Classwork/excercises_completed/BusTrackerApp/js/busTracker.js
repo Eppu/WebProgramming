@@ -237,7 +237,7 @@ function updateBusData(thisBus) {
         markers[i].mapMarker.setPosition(new google.maps.LatLng(thisBus.latitude, thisBus.longitude));
         icon.rotation = thisBus.rotation;
 
-        // check whether or not the rotation is 0 (a.k.a the bus is stationary).
+        // check whether or not the rotation is 0 (a.k.a the bus is stationary). don't know why this api determines rotation 0 as being stationary.
         if (thisBus.rotation != 0) {
           //  if it is, change the icon into a circle.
           icon.path = rotationIconPath;
