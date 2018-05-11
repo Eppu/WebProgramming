@@ -265,7 +265,7 @@ function removeFromSelection(elem) {
   chosenBusLines = chosenBusLines.filter(e => e !== elem.value);
   clearBusData();
   //use this for testing
-  console.log(chosenBusLines);
+  //console.log(chosenBusLines);
   gotInitialValues = false;
   checkIfSelected(elem);
   getJSONData();
