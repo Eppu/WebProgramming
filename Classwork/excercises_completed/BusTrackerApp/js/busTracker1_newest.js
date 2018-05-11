@@ -12,8 +12,10 @@ const INIT_ZOOM = 13;
 const UPDATE_FREQ = 1000;
 
 //data source
-//let busDataSource = "http://lissu-api.herokuapp.com/";
-let busDataSource = "./testdata.json";
+let busDataSource = "http://lissu-api.herokuapp.com/";
+
+//static data - use this if the live API is down
+//let busDataSource = "./testdata.json";
 
 //html element references
 let clearArrayBtn = document.getElementById("cleararraybutton");
@@ -206,36 +208,35 @@ function showMap() {
 //store the bus data as markers in an array
 function storeBusData(thisBus) {
   let currentBusLocation = new google.maps.LatLng(thisBus.latitude, thisBus.longitude);
+  //custom marker icon for the buses
+  let myIcon = {
+    path: "M157,311c60.8,0,110.1-48.2,110.2-107.7c0-80-110-201.9-110-201.9S47,123.2,47,203.1C46.9,262.7,96.2,311,157,311z",
+    fillColor: "#e71784",
+    fillOpacity: 1,
+    strokeColor: "#a50e64",
+    strokeWeight: 1,
+    anchor: new google.maps.Point(157, 168),
+    labelOrigin: new google.maps.Point(157, 168),
+    scale: 0.1,
+    rotation: thisBus.rotation
+  };
+
+  //store the info windows' content in this variable
+  let infoWindowContent =
+    '<div id="content">' +
+    '<h3 id="firstHeading" class="firstHeading">Line ' + thisBus.line + '</h3>' +
+    '<div id="bodyContent">' +
+    '<p><b>From: </b>' + thisBus.origin + '<br/>' +
+    '<p><b>To: </b>' + thisBus.destination + '<br/>'
+  '</div>' +
+  '</div>';
+
   if (chosenBusLines.includes(thisBus.line)) { //need to check if the current buses line equals to something inside the chosenBusLines array?
-
-    //custom marker icon for the buses
-    let myIcon = {
-      path: "M157,311c60.8,0,110.1-48.2,110.2-107.7c0-80-110-201.9-110-201.9S47,123.2,47,203.1C46.9,262.7,96.2,311,157,311z",
-      fillColor: "#e71784",
-      fillOpacity: 1,
-      strokeColor: "#a50e64",
-      strokeWeight: 1,
-      anchor: new google.maps.Point(157, 168),
-      labelOrigin: new google.maps.Point(157, 168),
-      scale: 0.1,
-      rotation: thisBus.rotation
-    };
-
-    //store the info windows' content in this array
-    let infoWindowContent =
-      '<div id="content">' +
-      '<h3 id="firstHeading" class="firstHeading">Line ' + thisBus.line + '</h3>' +
-      '<div id="bodyContent">' +
-      '<p><b>From: </b>' + thisBus.origin + '<br/>' +
-      '<p><b>To: </b>' + thisBus.destination + '<br/>'
-    '</div>' +
-    '</div>';
-
-    //create a variable for the marker info windows
+    //create variable for the bus info windows
     let markerInfoWindow = new google.maps.InfoWindow({
       content: infoWindowContent
     });
-
+    //declare a new marker
     let myMarker = new google.maps.Marker({
       position: currentBusLocation,
       map: myMap,
@@ -270,7 +271,10 @@ function updateBusData(thisBus) {
   if (chosenBusLines.includes(thisBus.line)) { //need to check if the current buses line equals to something inside the chosenBusLines array?
     for (i = 0; i < markers.length; i++) {
       if (thisBus.id == markers[i].busId) {
+        let icon = markers[i].mapMarker.getIcon();
         markers[i].mapMarker.setPosition(new google.maps.LatLng(thisBus.latitude, thisBus.longitude));
+        icon.rotation = thisBus.rotation;
+        markers[i].mapMarker.setIcon(icon);
       }
     }
   }
@@ -315,12 +319,12 @@ function locateUser() {
 
 function createUserPositionMarker(pos) {
   let userIcon = {
-    //path for an svg image. need to use a path instead of url for browser compatibility and modifying the image.
+    //path for an svg image. need to use a path instead of url for browser compatibility and modifying the image with js code.
     path: "M 302.07468,1018.9879 C 286.25571,1013.7975 273.72731,1002.1224 270.14882,989.23628 C 268.72288,984.1015 268.04339,879.0565 268.03581,662.57732 L 268.02464,343.48701 L 260.00981,343.48701 L 251.99498,343.48701 L 251.99498,463.93754 C 251.99498,582.0174 251.91344,584.53145 247.85195,591.67385 C 242.59122,600.92516 236.68341,605.26002 225.12128,608.3524 C 208.02752,612.9243 189.33348,604.19421 182.62031,588.50452 C 178.30101,578.40967 178.58231,309.1661 182.92959,292.47574 C 192.72875,254.85424 224.46236,224.03277 261.4729,216.19007 C 280.96898,212.05877 461.22336,212.00781 480.66203,216.12811 C 500.46216,220.32503 517.4686,229.81823 532.51666,245.07399 C 547.995,260.76598 555.2203,273.49531 560.60963,294.56739 C 564.3661,309.255 564.57327,317.12085 564.57327,445.05908 C 564.57327,562.00859 564.1613,581.03909 561.49128,587.42934 C 557.33972,597.36544 553.06762,601.83388 543.53434,606.21158 C 527.71428,613.47618 507.6073,608.80266 498.25271,595.68663 L 493.44167,588.94109 L 492.89594,466.21405 L 492.35019,343.48701 L 484.38018,343.48701 L 476.41016,343.48701 L 476.41016,664.14446 C 476.41016,1015.6449 477.20541,992.30562 464.78255,1005.3947 C 454.96943,1015.734 444.96244,1019.6452 428.32119,1019.6452 C 411.67995,1019.6452 401.67295,1015.734 391.85984,1005.3947 C 379.6788,992.56041 380.23223,1002.5082 380.23223,796.3891 L 380.23223,607.97631 L 372.2174,607.97631 L 364.20257,607.97631 L 364.20257,796.3891 C 364.20257,949.93319 363.70254,985.99515 361.50065,991.24959 C 357.46396,1000.8825 348.6824,1010.38 339.46404,1015.0829 C 330.57932,1019.6155 310.40822,1021.7222 302.07468,1018.9879 z M 347.1449,193.72648 C 322.92259,185.07506 307.9519,171.7394 297.35531,149.37467 C 291.49021,136.996 291.06727,134.61803 291.06727,114.02045 C 291.06727,93.178545 291.43138,91.197919 297.54651,78.776333 C 328.09011,16.733472 416.2698,16.581356 446.76157,78.518927 C 453.07499,91.343304 453.36753,92.959846 453.36753,115.02231 C 453.36753,136.24035 452.91461,139.02936 447.76661,149.51259 C 439.11869,167.12288 426.3456,179.96367 408.89892,188.58629 C 395.35312,195.28098 391.91342,196.11457 375.4939,196.68179 C 361.71596,197.15774 354.7057,196.42694 347.1449,193.72648 z ",
+
     fillColor: "#777",
     fillOpacity: 1,
     anchor: new google.maps.Point(372, 525),
-    //labelOrigin: new google.maps.Point(157, 168),
     scale: 0.04,
   };
 
@@ -347,12 +351,12 @@ function createUserPositionMarker(pos) {
         window.alert('Geocoder failed due to: ' + status);
       }
     });
-    });
-    myMap.setCenter(pos);
-    myMap.setZoom(15);
-    //infoWindow.setPosition(pos);
-    //infoWindow.setContent('Location found.');
-    //infoWindow.open(myMap);
+  });
+  myMap.setCenter(pos);
+  myMap.setZoom(15);
+  //infoWindow.setPosition(pos);
+  //infoWindow.setContent('Location found.');
+  //infoWindow.open(myMap);
 
 }
 
