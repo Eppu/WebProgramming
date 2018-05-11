@@ -157,6 +157,7 @@ vertical-align: baseline;
 .circleButton:hover {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+  background-color: #aaaaaa;
 }
 
 .circleButton:active {
@@ -188,6 +189,12 @@ vertical-align: baseline;
 #universityButton {
   position: absolute;
   right: 130px;
+  bottom: 30px;
+}
+
+#ttyButton {
+  position: absolute;
+  right: 190px;
   bottom: 30px;
 }
 

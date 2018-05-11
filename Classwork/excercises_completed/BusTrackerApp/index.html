@@ -4,14 +4,16 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title> Tampere Bus Tracker </title>
+	<title> Stoppi - Bus Tracker for Students in Tampere </title>
 	<link rel="stylesheet" href="css/style.css" media="screen" />
+	<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
 </head>
 
 <body>
-		<div id="logoContainer">
-					<img src="images/tamk.png" id="logo" />
-		</div>
+	<div id="logoContainer">
+		<img src="images/tamk.png" id="logo" />
+	</div>
 
 	<div class="menuBtnContainer">
 		<button id="geolocationButton" class="circleButton" title="Find your location"><img id="locationImage" class="buttonIcon" src="images/locate-mark.svg" /></button>
@@ -114,15 +116,16 @@
 			<button id="mediapolisButton" class="circleButton" title="Lines to Mediapolis (Stop Mediapolis)"><img id="mediapolisImage" class="buttonIcon" src="images/mediapolis.png"/ /></button>
 			<button id="mainCampusButton" class="circleButton" title="Lines to TAMK Main Campus (Stop TAMK)"><img id="tamkImage" class="buttonIcon" src="images/tamk.png"/ /></button>
 			<button id="universityButton" class="circleButton" title="Lines to Tampere University (Stops Yliopisto A, B, C, D)"><img id="universityImage" class="buttonIcon" src="images/university.png"/ /></button>
+			<button id="ttyButton" class="circleButton" title="Lines to Tampere Technical University (Stop TTY)"><img id="ttyImage" class="buttonIcon" src="images/tty.png"/ /></button>
 		</div>
 	</div>
 
 
 	<div id="mapholder"></div>
-	<!-- v Remove this if not needed for static cross origin requests v -->
+	<!-- Use this if deploying live with the static data -->
 	<!-- <script src="testdata.json" type="text/javascript"></script> -->
 	<script src="https://maps.google.com/maps/api/js"></script>
-	<script type="text/javascript" src="js/busTracker1_newest.js"></script>
+	<script type="text/javascript" src="js/busTracker.js"></script>
 </body>
 
 </html>

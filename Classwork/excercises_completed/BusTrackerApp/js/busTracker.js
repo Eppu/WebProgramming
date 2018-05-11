@@ -22,6 +22,7 @@ let mapDivElem = document.getElementById("mapholder");
 let mediapolisBtn = document.getElementById("mediapolisButton");
 let tamkBtn = document.getElementById("mainCampusButton");
 let universityBtn = document.getElementById("universityButton");
+let ttyBtn = document.getElementById("ttyButton");
 
 //google maps variables
 let myMap;
@@ -45,6 +46,7 @@ let userPositionMarker;
 let mediapolisLines = ["8", "17"];
 let tamkLines = ["1", "5", "8", "28A", "28B", "28C", "28Y", "29", "80", "90"];
 let universityLines = ["2", "6", "9A", "9B", "15", "28B", "40"];
+let ttyLines = ["6", "20", "24", "38", "65N", "65X"];
 
 let gotInitialValues = false;
 
@@ -80,6 +82,10 @@ tamkBtn.addEventListener("click", function() {
 //listener for the unversity button
 universityBtn.addEventListener("click", function() {
   showSchoolLines(universityLines);
+});
+//listener for the technical university button
+ttyBtn.addEventListener("click", function() {
+  showSchoolLines(ttyLines);
 });
 
 //Add event listeners to all elements with the "line-btn" class
